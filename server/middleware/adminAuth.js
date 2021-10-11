@@ -9,6 +9,7 @@ module.exports = async function (req, res, next) {
 
         if (user.role === 0) {
             return res.status(403).json({
+                success: false,
                 error: 'Admin resources access denied'
             })
         }
@@ -16,6 +17,6 @@ module.exports = async function (req, res, next) {
         next()
     } catch (error) {
         console.log(err)
-        res.status(500).send('Server Error')
+        res.status(500).json({ success: false, message: 'Internal server error' })
     }
 }

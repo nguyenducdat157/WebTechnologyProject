@@ -21,7 +21,7 @@ router.get('/', auth, async(req, res) => {
         res.json(user)
     } catch(error) {
         console.log(error);
-        res.status(500).send('Server error')
+        res.status(500).json({ success: false, message: 'Internal server error' })
     }
 })
 
@@ -40,6 +40,7 @@ router.post('/register', [
     const errors = validationResult(req);
     if(!errors.isEmpty()) {
         return res.status(400).json({
+            success: false,
             errors: errors.array()
         });
     }
@@ -53,11 +54,8 @@ router.post('/register', [
         //If user exist
         if(user) {
             return res.status(400).json({
-                errors: [
-                    {
-                        msg: 'User already exists',
-                    },
-                ],
+                success: false,
+                message: 'User already taken'
             });
         }
 
@@ -97,12 +95,16 @@ router.post('/register', [
             }, 
             (err, token) => {
                 if(err) throw err;
-                res.json({token});
+                res.json({
+                    success: true,
+                    message: 'User created successfully',
+                    token
+                })
             }
         )
     } catch (error) {
         console.log(error);
-        res.status(500).send('Server error');
+        res.status(500).json({ success: false, message: 'Internal server error' })
     }
 })
 
@@ -117,6 +119,7 @@ router.post('/login', [
     const errors = validationResult(req);
     if(!errors.isEmpty()) {
         return res.status(400).json({
+            success: false,
             errors: errors.array()
         })
     }
@@ -134,9 +137,8 @@ router.post('/login', [
         //if user not found in database
         if(!user) {
             return res.status(400).json({
-                errors: [{
-                    msg: 'Invalid credentials'
-                }]
+                success: false, 
+                message: 'Incorrect username or password' 
             })
         }
 
@@ -146,9 +148,8 @@ router.post('/login', [
         //password dont't match
         if(!isMatch) {
             return res.status(400).json({
-                errors: [{
-                    msg: 'Invalid credentials'
-                }]
+                success: false, 
+                message: 'Incorrect username or password' 
             })
         }
 
@@ -166,14 +167,16 @@ router.post('/login', [
             }, (err, token) => {
                 if(err) throw err;
                 res.json({
-                    token
+                    success: true,
+			        message: 'User logged in successfully',
+			        token
                 })
             }
         )
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json('Server error')
+        return res.status(500).json({ success: false, message: 'Internal server error' })
     }
 })
 

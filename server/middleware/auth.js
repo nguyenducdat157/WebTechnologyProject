@@ -7,6 +7,7 @@ module.exports = (req, res, next) => {
     //Check if no token
     if(!token) {
         return res.status(401).json({
+            success: false,
             msg: 'No token, auth denied'
         })
     }
@@ -19,6 +20,7 @@ module.exports = (req, res, next) => {
         next();
     } catch (error) {
         req.status(401).json({
+            success: false,
             msg: 'Token is not valid'
         })
     }
