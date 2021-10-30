@@ -2,9 +2,12 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-
 const app = express();
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+  }));
+
 require('dotenv').config({
     path:'./config/index.env'
 })
@@ -17,8 +20,8 @@ app.use(morgan('dev'))
 app.use(cors())
 
 //routes
-app.use('/api/user', require('./routes/auth.route'));
-app.use('/api/product', require('./routes/product.route'));
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/products', require('./routes/product'));
 app.get('/', (req, res) => {
     res.send('test route => home page');
 });
