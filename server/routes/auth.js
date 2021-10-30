@@ -10,20 +10,6 @@ const gravatar = require('gravatar');
 //Models
 const User = require('../models/User')
 
-//@route POST api/user
-//@desc User Information
-//@access Private
-// router.get('/', auth, async(req, res) => {
-//     try {
-//         //get user information by id
-//         const user = await User.findById(req.user.id).select('-password');
-//         console.log(user);
-//         res.json(user)
-//     } catch(error) {
-//         console.log(error);
-//         res.status(500).json({ success: false, message: 'Internal server error' })
-//     }
-// })
 
 //@route POST api/user/register
 //@desc Register user
