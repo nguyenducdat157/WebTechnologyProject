@@ -6,7 +6,7 @@ let storage = multer.diskStorage({
         cb(null, 'uploads/')
     },
     filename: function(req, file, cb) {
-        let ext = file.originalname
+        let ext = file.originalname.replace(/\s/g, '');
         cb(null, ext)
     }
 })
