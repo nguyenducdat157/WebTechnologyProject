@@ -4,41 +4,15 @@ const jwt = require('jsonwebtoken') // to generate token
 const bcrypt = require('bcryptjs'); //encrypt password
 const CryptoJS = require("crypto-js");
 //Check validation for requests
-const {checkSchema, validationResult, check} = require('express-validator');
+//const {checkSchema, validationResult, check} = require('express-validator');
 const gravatar = require('gravatar');
-// const auth = require('../middleware/auth')
-//Models
 const User = require('../models/User')
 
 
-//@route POST api/user/register
-//@desc Register user
-//@access Public
-
-router.post('/register', 
-[
-    // validation
-    check('username', 'Username is required').not().isEmpty(),
-    check('email', 'Please include a valid email').isEmail(),
-    check(
-      'password',
-      'Please enter a password with 6 or more characters'
-    ).isLength({
-      min: 6,
-    }),
-  ],
-  async (req, res) => {
-    // console.log(req.body);
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-    console.log(errors)
-      return res.status(400).json({
-        
-        errors: errors.array(),
-      });
-    }
+router.post('/register', async (req, res) => {
+    // console.log(req.body)
     //get username and email password from request
-    const {username, email, password} = req.body;
+    const {name, email, password} = req.body;
 
     try {
         //check if user already exist
@@ -55,7 +29,7 @@ router.post('/register',
         // If not exists
         // create user object
         const newUser = new User({
-            username: req.body.username,
+            name: req.body.name,
             email: req.body.email,
             password: CryptoJS.AES.encrypt(
               req.body.password,
@@ -65,64 +39,61 @@ router.post('/register',
 
         //save user in database
         await newUser.save();
+        // jwt.sign(
+        //     payload,
+        //     process.env.JWT_SECRET, {
+        //         expiresIn: '3d',
+        //     }, 
+        //     (err, token) => {
+        //         if(err) throw err;
+        //         res.json({
+        //             success: true,
+        //             message: 'User created successfully',
+        //             token,
+        //             newUser
+        //         })
+        //     }
+        // )
+        if (newUser) {
+            res.send({
+              _id: newUser.id,
+              name: newUser.name,
+              email: newUser.email,
+              isAdmin: newUser.isAdmin,
+              token: getToken(newUser),
+              success: true,
+              message: 'User created successfully',
+            });
+          } else {
+            res.status(401).send({ message: 'Invalid User Data.' });
+          }
 
-        //payload to generate token
-        const payload = {
-            id: newUser._id,
-            isAdmin: newUser.isAdmin,
-        }
-        jwt.sign(
-            payload,
-            process.env.JWT_SECRET, {
-                expiresIn: '3d',
-            }, 
-            (err, token) => {
-                if(err) throw err;
-                res.json({
-                    success: true,
-                    message: 'User created successfully',
-                    token,
-                    newUser
-                })
-            }
-        )
+
     } catch (error) {
         console.log(error);
         res.status(500).json({ success: false, message: 'Internal server error' })
     }
 })
 
-//@route POST api/user/login
-//@desc Login user
-//@access Public
-router.post('/login', [
-    check('username', 'username is required').exists(),
-    check('password', 'password is required').exists()
-], async (req, res) => {
-    //If error
-    const errors = validationResult(req);
-    if(!errors.isEmpty()) {
-        return res.status(400).json({
-            success: false,
-            errors: errors.array()
-        })
-    }
+
+router.post('/signin', async (req, res) => {
 
     //if everrything is good
     //get email and password from request body
-    const {username, password} = req.body;
+    const {email, password} = req.body;
 
     try {
         //find user
         let user = await User.findOne({
-            username
+            email: email,
+            password: password
         });
 
         //if user not found in database
         if(!user) {
-            return res.status(400).json({
+            return res.status(401).json({
                 success: false, 
-                message: 'Incorrect username or password' 
+                message: 'Incorrect Email or password' 
             })
         }
 
@@ -134,32 +105,42 @@ router.post('/login', [
         const isMatch = OriginalPassword === password;
           //password dont't match
         if(!isMatch) {
-            return res.status(400).json({
+            return res.status(401).json({
                 success: false, 
                 message: 'Incorrect username or password' 
             })
         }
 
-        //payload for jwt 
-        const payload = {
-            id: user._id,
-            isAdmin: user.isAdmin,
-        }
+        // //payload for jwt 
+        // const payload = {
+        //     id: user._id,
+        //     isAdmin: user.isAdmin,
+        // }
 
-        jwt.sign(
-            payload,
-            process.env.JWT_SECRET, {
-                expiresIn: '3d'
-            }, (err, token) => {
-                if(err) throw err;
-                res.json({
-                    success: true,
-			        message: 'User logged in successfully',
-			        token,
-                    user
-                })
-            }
-        )
+        // jwt.sign(
+        //     payload,
+        //     process.env.JWT_SECRET, {
+        //         expiresIn: '3d'
+        //     }, (err, token) => {
+        //         if(err) throw err;
+        //         res.json({
+        //             success: true,
+		// 	        message: 'User logged in successfully',
+		// 	        token,
+        //             user
+        //         })
+        //     }
+        // )
+
+        res.json({
+            success: true,
+            _id: user.id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin,
+            token: getToken(user),
+            message: 'User logged in successfully',
+        })
 
     } catch (error) {
         console.log(error);

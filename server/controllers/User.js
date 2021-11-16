@@ -3,38 +3,34 @@ const CryptoJS = require("crypto-js");
 const router = require('../routes/auth');
 //UPDATE
 exports.updateUserById = async (req, res) => {
-    if (req.body.password) {
-      req.body.password = CryptoJS.AES.encrypt(
-        req.body.password,
-        process.env.PASS_SECRET
-      ).toString();
-    }
+    // if (req.body.password) {
+    //   req.body.password = CryptoJS.AES.encrypt(
+    //     req.body.password,
+    //     process.env.PASS_SECRET
+    //   ).toString();
+    // }
   
     try {
-      const updatedUser = await User.findByIdAndUpdate(
-        req.params.id,
-        {
-          $set: req.body,
-        },
-        { new: true }
-      );
-      res.status(200).json(updatedUser);
+      const user = await User.findById(req.params.id);
+      if(user) {
+        user.name = req.body.name || user.name;
+        user.email = req.body.email || user.email;
+        user.password = req.body.password || user.password;
+        const updatedUser = await user.save();
+        res.status(200).json({
+          _id: updatedUser.id,
+          name: updatedUser.name,
+          email: updatedUser.email,
+          isAdmin: updatedUser.isAdmin,
+          token: getToken(updatedUser),
+        });
+      }
     } catch (err) {
         console.log(err);
         res.status(500).json({ success: false, message: 'Internal server error' })
     }
 }
 
-//DELETE
-exports.deleteUser = async (req, res) => {
-    try {
-      await User.findByIdAndDelete(req.params.id);
-      res.status(200).json("User has been deleted...");
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({ success: false, message: 'Internal server error' })
-    }
-}
 
 //DELETE BY ADMIN
 exports.deleteUserByAdmin = async (req, res) => {
@@ -61,39 +57,10 @@ exports.getUserById = async (req, res) => {
 
 //GET ALL USER
 exports.getAllUser = async (req, res) => {
-    const query = req.query.new;
     try {
-      const users = query
-        ? await User.find().sort({ _id: -1 }).limit(5)
-        : await User.find();
-      res.status(200).json(users);
+      const users = await User.find({});
+      res.send(users);
     } catch (err) {
       res.status(500).json(err);
     }
 };
-
-//GET USER STATS
-exports.getUserStats =  async (req, res) => {
-    const date = new Date();
-    const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
-  
-    try {
-      const data = await User.aggregate([
-        { $match: { createdAt: { $gte: lastYear } } },
-        {
-          $project: {
-            month: { $month: "$createdAt" },
-          },
-        },
-        {
-          $group: {
-            _id: "$month",
-            total: { $sum: 1 },
-          },
-        },
-      ]);
-      res.status(200).json(data)
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  };

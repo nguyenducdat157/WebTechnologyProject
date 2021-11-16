@@ -1,14 +1,14 @@
-const { createOrder, updateOrder, deleteOrder, getMyOrders, getAllOrders, getMonthlyIncome } = require('../controllers/Order');
-const { verifyToken, verifyTokenAndAdmin, verifyTokenAndAuthorization } = require('../middleware/auth');
+const { createOrder, updateOrder, deleteOrder, getMyOrders, getAllOrders, getMonthlyIncome, payOrder } = require('../controllers/Order');
+const { isAuth, isAdmin } = require('../middleware/auth');
 const Order = require('../models/Order');
 
 
 const router = require("express").Router();
 
 
-router.post("/", verifyToken, createOrder);
-router.put("/:id", verifyTokenAndAdmin, updateOrder);
-router.delete('/:id',  verifyTokenAndAdmin, deleteOrder)
-router.get("/find/:userId", verifyTokenAndAuthorization, getMyOrders);
-router.get("/", verifyTokenAndAdmin, getAllOrders);
-router.get("/income", verifyTokenAndAdmin, getMonthlyIncome);
+router.post("/", isAuth, createOrder);
+// router.put("/:id", isAuth, isAdmin, updateOrder);
+router.delete('/:id',  isAuth, isAdmin, deleteOrder)
+router.get("/mine", isAuth, getMyOrders);
+router.get("/", isAuth, isAdmin, getAllOrders);
+router.put(":id/pay", isAuth, payOrder);

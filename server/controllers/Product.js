@@ -11,7 +11,7 @@ exports.createProduct = (req, res) => {
         product.save((error, product) => {
             if(error) return res.status(400).json({error});
             if(product) {
-                res.status(200).json({success: true, product});
+                res.status(201).json({success: true, message: 'New Product Created', data: product});
             }
         })
     } catch (err) {
@@ -33,30 +33,42 @@ exports.getProductById = async (req, res) => {
           res.status(500).json({ success: false, message: 'Internal server error' })
       }
     } else {
-      return res.status(400).json({ success: false, error: "Params required" });
+      return res.status(400).json({ success: false, error: "Product Not Found." });
     }
 };
 
 exports.getProducts = async (req, res) => {
-   const qNew = req.query.new;
-   const qCategory = req.query.category;
+   const category = req.query.category ? { category: req.query.category } : {};
+   const searchKeyword = req.query.searchKeyword
+        ? {
+            name: {
+            $regex: req.query.searchKeyword,
+            $options: 'i',
+            },
+        }
+        : {};
+        const minPrice = req.query.minPrice
+        ? {
+            price: {
+            $gte: req.query.minPrice
+            }
+        }
+        : {};
+        const maxPrice = req.query.maxPrice
+        ? {
+            price: {
+            $lte: req.query.maxPrice
+            }
+        }
+        : {};
+        const sortOrder = req.query.sortOrder
+        ? req.query.sortOrder === 'lowest'
+            ? { price: 1 }
+            : { price: -1 }
+        : { _id: -1 };
    try {
-       let products;
-       if(qNew) {
-            products = await Product.find().sort({createAt: -1}).limit(1);
-       } else if (qCategory) {
-            products = await Product.find({
-                categories: {
-                    $in: [qCategory],
-                }
-            });
-       } else {
-        products = await Product.find();
-       }
-       if(!products || products.length === 0) {
-           return res.status(200).json({msg: 'Not product founded'});
-       }
-       return res.status(200).json({success: true, products});
+    const products = await Product.find({ ...category, ...searchKeyword, ...minPrice, ...maxPrice }).sort(sortOrder);
+    return res.status(200).json({success: true, products});
    } catch (err) {
        console.log(err);
        res.status(500).json({ success: false, message: 'Internal server error' })
@@ -65,32 +77,33 @@ exports.getProducts = async (req, res) => {
 
 exports.updateProductById = async (req, res) => {
     try {
-        const updateProduct = await Product.findById(req.params.id);
-        updateProduct.title = req.body.title
-        updateProduct.desc = req.body.desc
-        updateProduct.img = req.body.img
-        updateProduct.categories = req.body.categories
-        updateProduct.size = req.body.size
-        updateProduct.color = req.body.color
-        updateProduct.price = req.body.price
-        updateProduct.inStock = req.body.inStock
-        updateProduct.countInStock = req.body.countInStock
-        updateProduct.saleOff = req.body.saleOff
-        updateProduct.soldAmount = req.body.soldAmount
-        
-        if(req.file) {
-            let path = '';
-            path = path + req.file.path
-            updateProduct.img = path
-        }
+        const product = await Product.findById({ _id: req.params.id });
+        if(product) {
+            product.name = req.body.name;
+            product.price = req.body.price;
+            product.image = req.body.image;
+            product.brand = req.body.brand;
+            product.category = req.body.category;
+            product.countInStock = req.body.countInStock;
+            product.description = req.body.description;
+            product.rating = req.body.rating;
+            product.numReviews = req.body.numReviews;
 
-
-        updateProduct.save((error, product) => {
-            if(error) return res.status(400).json({error});
-            if(product) {
-                res.status(200).json({success: true, product});
+             
+            if(req.file) {
+                let path = '';
+                path = path + req.file.path
+                updateProduct.img = path
             }
-        })
+
+            product.save((error, updatedProduct) => {
+                if(error) return res.status(400).json({error});
+                if(product) {
+                    res.status(200).json({success: true, message: 'Product Updated', data: updatedProduct});
+                }
+            })
+
+        }
     } catch (err) {
         console.log(err);
         res.status(500).json({ success: false, message: 'Internal server error' })
@@ -107,4 +120,33 @@ exports.deleteProduct = async (req, res) => {
     }
 }
 
+exports.reviewProduct = async (req, res) => { //reviewProduct()
+    try {
+        const product = await Product.findById(req.params.id);
+    if (product) {
+      const review = {
+        name: req.body.name,
+        rating: Number(req.body.rating),
+        comment: req.body.comment,
+        image: req.body.image
+      };
+      product.reviews.push(review);
+      product.numReviews = product.reviews.length;
+      product.rating =
+        product.reviews.reduce((a, c) => c.rating + a, 0) /
+        product.reviews.length;
+      const updatedProduct = await product.save();
+      res.status(201).json({
+        data: updatedProduct.reviews[updatedProduct.reviews.length - 1],
+        message: 'Review saved successfully.',
+        success: true
+      });
+    } else {
+      res.status(404).json({ message: 'Product Not Found', success: false });
+    }
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ success: false, message: 'Internal server error' })
+    }
+  }
 
