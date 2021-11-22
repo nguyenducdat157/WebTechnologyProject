@@ -14,16 +14,16 @@ export const signin = (email, password) => async (dispatch) => {
     }
   }
   
-  export const register = ({username, email, password, fullname, phone, address}) => async (dispatch) => {
-    dispatch({ type: USER_REGISTER_REQUEST, payload: { username, email, password, fullname, phone, address } });
+export const register = ({name, email, password}) => async (dispatch) => {
+    dispatch({ type: USER_REGISTER_REQUEST, payload: { name, email, password } });
     try {
-      const body = {username, email, password, fullname, phone, address}
+      const body = {name, email, password }
       axios({
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
         },
-        url: `${HOST_URL}/api/user/register`,
+        url: `${HOST_URL}/api/auth/register`,
         data: body
     })
     .then(function (response) {
@@ -31,14 +31,17 @@ export const signin = (email, password) => async (dispatch) => {
         dispatch({ type: USER_REGISTER_SUCCESS, payload: response.data.user });
         localStorage.setItem('info', JSON.stringify(response.data.user));
         Cookie.set('token', response.data.token);
+        return response.data;
     })
     .catch(function (error) {
-        console.log(error);
+        // console.log(error.response);
         dispatch({ type: USER_REGISTER_FAIL, payload: error.message });
+        return error.response.data;
     });
     } catch (error) {
-        console.log(error)
+        // console.log(error)
       dispatch({ type: USER_REGISTER_FAIL, payload: error.message });
+      return error.response.data;
     }
 
   }

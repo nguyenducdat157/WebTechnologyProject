@@ -6,7 +6,8 @@ const CryptoJS = require("crypto-js");
 //Check validation for requests
 //const {checkSchema, validationResult, check} = require('express-validator');
 const gravatar = require('gravatar');
-const User = require('../models/User')
+const User = require('../models/User');
+const { getToken } = require('../middleware/auth');
 
 
 router.post('/register', async (req, res) => {
@@ -56,10 +57,12 @@ router.post('/register', async (req, res) => {
         // )
         if (newUser) {
             res.send({
-              _id: newUser.id,
-              name: newUser.name,
-              email: newUser.email,
-              isAdmin: newUser.isAdmin,
+                user: {
+                    _id: newUser.id,
+                    name: newUser.name,
+                    email: newUser.email,
+                    isAdmin: newUser.isAdmin,
+                },
               token: getToken(newUser),
               success: true,
               message: 'User created successfully',
@@ -70,7 +73,7 @@ router.post('/register', async (req, res) => {
 
 
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         res.status(500).json({ success: false, message: 'Internal server error' })
     }
 })
@@ -86,7 +89,7 @@ router.post('/signin', async (req, res) => {
         //find user
         let user = await User.findOne({
             email: email,
-            password: password
+            // password: password
         });
 
         //if user not found in database
@@ -134,10 +137,12 @@ router.post('/signin', async (req, res) => {
 
         res.json({
             success: true,
-            _id: user.id,
-            name: user.name,
-            email: user.email,
-            isAdmin: user.isAdmin,
+            user: {
+                _id: user.id,
+                name: user.name,
+                email: user.email,
+                isAdmin: user.isAdmin,
+            },
             token: getToken(user),
             message: 'User logged in successfully',
         })

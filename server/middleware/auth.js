@@ -23,8 +23,9 @@ const isAuth = (req, res, next) => {
       jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
         if (err) {
           console.log(err)
-          res.status(401).json("Invalid Token");
+          return res.status(401).json("Invalid Token");
         }
+        console.log(user);
         req.user = user;
         next();
         return;
@@ -34,15 +35,15 @@ const isAuth = (req, res, next) => {
     }
   };
   
-// const verifyTokenAndAuthorization = (req, res, next) => {
-//     verifyToken(req, res, () => {
-//       if (req.user.id === req.params.id || req.user.isAdmin) {
-//         next();
-//       } else {
-//         res.status(403).json("You are not alowed to do that!");
-//       }
-//     });
-//   };
+const verifyTokenAndAuthorization = (req, res, next) => {
+  isAuth(req, res, () => {
+      if (req.user.id === req.params.id || req.user.isAdmin) {
+        next();
+      } else {
+        res.status(403).json("You are not alowed to do that!");
+      }
+    });
+  };
   
 // const verifyTokenAndAdmin = (req, res, next) => {
 //     verifyToken(req, res, () => {
@@ -65,8 +66,8 @@ const isAdmin = (req, res, next) => {
   module.exports = {
     getToken,
     isAuth,
-    isAdmin
+    isAdmin,
     // verifyToken,
-    // verifyTokenAndAuthorization,
+    verifyTokenAndAuthorization,
     // verifyTokenAndAdmin,
   }

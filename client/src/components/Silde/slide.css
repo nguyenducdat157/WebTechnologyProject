@@ -1,0 +1,66 @@
+.mySlides {
+  display: block;
+}
+
+/* Slideshow container */
+.slideshow-container {
+  /* max-width: 1000px; */
+  position: relative;
+  margin: auto;
+  width: 100%;
+}
+
+/* slide__next & previous buttons */
+.slide__prev,
+.slide__next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "slide__next button" to the right */
+.slide__next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.slide__prev:hover,
+.slide__next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* The slide__dots/bullets/indicators */
+.slide__dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.slide__active,
+.slide__dot:hover {
+  background-color: #717171;
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .slide__prev,
+  .slide__next,
+  .text {
+    font-size: 11px;
+  }
+}

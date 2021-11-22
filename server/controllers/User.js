@@ -1,14 +1,23 @@
 const User = require('../models/User');
 const CryptoJS = require("crypto-js");
 const router = require('../routes/auth');
+const { getToken } = require('../middleware/auth');
 //UPDATE
 exports.updateUserById = async (req, res) => {
-    // if (req.body.password) {
-    //   req.body.password = CryptoJS.AES.encrypt(
-    //     req.body.password,
-    //     process.env.PASS_SECRET
-    //   ).toString();
-    // }
+    const checkUser = await User.findOne({email : req.body.email});
+    if(checkUser) {
+      return res.status(400).json({
+        success: false,
+        message: "Email ready existed"
+      })
+    }
+
+    if (req.body.password) {
+      req.body.password = CryptoJS.AES.encrypt(
+        req.body.password,
+        process.env.PASS_SECRET
+      ).toString();
+    }
   
     try {
       const user = await User.findById(req.params.id);
@@ -16,13 +25,13 @@ exports.updateUserById = async (req, res) => {
         user.name = req.body.name || user.name;
         user.email = req.body.email || user.email;
         user.password = req.body.password || user.password;
-        const updatedUser = await user.save();
+        await user.save();
         res.status(200).json({
-          _id: updatedUser.id,
-          name: updatedUser.name,
-          email: updatedUser.email,
-          isAdmin: updatedUser.isAdmin,
-          token: getToken(updatedUser),
+          _id: user.id,
+          name: user.name,
+          email: user.email,
+          isAdmin: user.isAdmin,
+          token: getToken(user),
         });
       }
     } catch (err) {

@@ -14,10 +14,10 @@ const {
 } = require('../controllers/Product');
 const { route } = require('./auth');
 
-router.post('/', isAuth, isAdmin, upload.single('img'), createProduct);
-router.put('/:id', isAuth, isAdmin, upload.single('img'), updateProductById);
+router.post('/', isAuth, isAdmin, upload.single('image'), createProduct);
+router.put('/:id', isAuth, isAdmin, upload.single('image'), updateProductById);
 router.get('/:id', getProductById);
 router.get('/', getProducts);
 router.delete('/:id', isAuth, isAdmin, deleteProduct)
-router.post('/:id/reviews', isAuth, reviewProduct);
+router.post('/:id/reviews', isAuth, upload.single('image'), reviewProduct);
 module.exports = router

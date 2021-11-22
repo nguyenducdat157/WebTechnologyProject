@@ -6,7 +6,7 @@ exports.createProduct = (req, res) => {
         if(req.file) {
             let path = '';
             path = path + req.file.path
-            product.img = path
+            product.image = path
         }
         product.save((error, product) => {
             if(error) return res.status(400).json({error});
@@ -93,7 +93,7 @@ exports.updateProductById = async (req, res) => {
             if(req.file) {
                 let path = '';
                 path = path + req.file.path
-                updateProduct.img = path
+                product.image = path
             }
 
             product.save((error, updatedProduct) => {
@@ -130,6 +130,12 @@ exports.reviewProduct = async (req, res) => { //reviewProduct()
         comment: req.body.comment,
         image: req.body.image
       };
+
+      if(req.file) {
+        let path = '';
+        path = path + req.file.path
+        review.image = path
+    }
       product.reviews.push(review);
       product.numReviews = product.reviews.length;
       product.rating =

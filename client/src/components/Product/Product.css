@@ -1,0 +1,18 @@
+/* Card */
+.product_cart {
+  border: 0.1rem #c0c0c0 solid;
+  background-color: #f8f8f8;
+  border-radius: 0.5rem;
+  margin: 1rem;
+  width: 400px;
+}
+.product__card__body {
+  padding: 1rem;
+}
+.product__card__body > * {
+  margin-bottom: 0.5rem;
+}
+
+.product__price {
+  font-size: 2rem;
+}
