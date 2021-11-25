@@ -1,0 +1,36 @@
+.ProductEdit-form input,textarea{
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 0.1rem #047baa solid;
+    font-size: 1.6rem;
+    font-family: Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.ProductEdit-form input:hover{
+    border: 0.1rem #047baa solid;
+}
+.ProductEdit-form button{
+    padding: 1rem;
+  border-radius: 0.5rem;
+  border: 0.1rem #a4a4a4 solid;
+  font-size: 1.6rem;
+  font-family: Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f0c040;
+}
+/* form */
+/* Form */
+.ProductEdit-form {
+    max-width: 60rem;
+    margin: 0 auto;
+  }
+  .ProductEdit-form > div {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+  }
+  .ProductEdit-form label {
+    margin: 1rem 0;
+  }
