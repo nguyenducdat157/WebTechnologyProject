@@ -1,0 +1,30 @@
+.dashboard-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .dashboard-summary > li {
+    border: 0.1rem #c0c0c0 solid;
+    margin: 2rem;
+    border-radius: 0.5rem;
+    flex: 1 1 20rem;
+  }
+.dashboard-summary-title{
+    font-size: 2rem;
+    padding: 1rem;
+}
+.dashboard-summary-body{
+    font-size: 4rem;
+    padding: 1rem;
+    text-align: center;
+}
+.dashboard-summary-title.color1 {
+    background-color: #f0e0e0;
+  }
+  .dashboard-summary-title.color2 {
+    background-color: #e0f0e0;
+  }
+  .dashboard-summary-title.color3 {
+    background-color: #e0e0f0;
+  }

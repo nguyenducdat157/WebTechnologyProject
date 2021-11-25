@@ -1,0 +1,58 @@
+.ProductList-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+/* button */
+.ProductList-button{
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 0.1rem #a4a4a4 solid;
+    font-size: 1.6rem;
+    font-family: Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+button.ProductList-primary {
+    background-color: #f0c040;
+}
+button.small{
+    font-size: 1.2rem;
+    background-color: #047baa;
+    color: white;
+}
+
+/* Table */
+.ProductList-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.ProductList-table tbody tr:nth-of-type(odd) {
+    background-color: #f4f4f4;
+}
+.ProductList-table td,
+.ProductList-table th {
+    text-align: left;
+    border: 0.1rem solid #e4e4e4;
+    padding: 0.5rem;
+}
+.ProductList-table button {
+    margin: 0 0.2rem;
+}
+
+.ProductList-row.ProductList-center {
+    justify-content: center;
+}
+.ProductList-pagination a{
+    background-color: #047baa;
+    color: white;
+    padding: 1rem;
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+    border: 0.1rem #a4a4a4 solid;
+    font-size: 1.6rem;
+    font-family: Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
