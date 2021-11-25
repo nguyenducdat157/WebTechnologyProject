@@ -8,8 +8,8 @@ const Layout = ({ children }) => {
         style={{ postion: "fixed", zIndex: "999", width: "100%" }}
         className="row"
       />
-      <main>{children}</main>
-      <Footer />
+      <main style={{height:"calc(100vh - 100px)",overflowY:"scroll"}}>{children}</main>
+      <Footer style={{postion: "fixed", zIndex: "999", width: "100%" }}/>
     </div>
   );
 };

@@ -8,7 +8,7 @@ const Header = (props) => {
   };
 
   return (
-    <header>
+    <header style = {{height:"50px", marginBottom: "0px"}}>
       <div
         className={
           showMenu ? "header__topnav header__responsive" : "header__topnav"
