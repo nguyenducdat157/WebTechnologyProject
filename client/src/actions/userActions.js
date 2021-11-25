@@ -6,9 +6,15 @@ import { HOST_URL } from '../ultils/constants';
 export const signin = (email, password) => async (dispatch) => {
     dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } });
     try {
-      const { data } = await axios.post("/api/users/signin", { email, password });
-      dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
+      const { data } = await axios.post(`${HOST_URL}/api/auth/signin`, { email, password }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      dispatch({ type: USER_SIGNIN_SUCCESS, payload: data.user });
       Cookie.set('userInfo', JSON.stringify(data));
+      localStorage.setItem('info', JSON.stringify(data.user))
+      localStorage.setItem('token', JSON.stringify(data.token))
     } catch (error) {
       dispatch({ type: USER_SIGNIN_FAIL, payload: error.message });
     }
@@ -30,6 +36,7 @@ export const register = ({name, email, password}) => async (dispatch) => {
         console.log(response.data);
         dispatch({ type: USER_REGISTER_SUCCESS, payload: response.data.user });
         localStorage.setItem('info', JSON.stringify(response.data.user));
+        localStorage.setItem('token', JSON.stringify(response.data.token));
         Cookie.set('token', response.data.token);
         return response.data;
     })

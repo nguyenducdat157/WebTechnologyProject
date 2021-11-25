@@ -48,7 +48,7 @@ const Register = () => {
         if (error.response?.status === 400) {
           setError("Tài khoản đã tồn tại");
         } else {
-          setError("Lỗi server!!!");
+          setError("Rất tiếc, đã có lỗi xảy ra!");
         }
       });
   };
