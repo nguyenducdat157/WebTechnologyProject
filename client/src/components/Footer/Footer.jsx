@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer>
+    <footer style = {{height:"50px"}}>
       <div
         style={{
           background: "#047baa",

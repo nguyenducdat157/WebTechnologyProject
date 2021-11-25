@@ -2,6 +2,7 @@
   overflow: hidden;
   background-color: #047baa;
   min-width: 220px;
+  height: 50px;
 }
 
 .header__link {

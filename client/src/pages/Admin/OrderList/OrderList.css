@@ -1,0 +1,36 @@
+/* button */
+.OrderList-button{
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 0.1rem #a4a4a4 solid;
+    font-size: 1.6rem;
+    font-family: Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+button.OrderList-primary {
+    background-color: #f0c040;
+}
+button.OrderList-small{
+    font-size: 1.2rem;
+    background-color: #047baa;
+    color: white;
+}
+
+/* Table */
+.OrderList-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.OrderList-table tbody tr:nth-of-type(odd) {
+    background-color: #f4f4f4;
+}
+.OrderList-table td,
+.OrderList-table th {
+    text-align: left;
+    border: 0.1rem solid #e4e4e4;
+    padding: 0.5rem;
+}
+.OrderList-table button {
+    margin: 0 0.2rem;
+}
