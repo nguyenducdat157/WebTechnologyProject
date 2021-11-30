@@ -9,6 +9,8 @@ const Product = (props) => {
     <div key={product._id} className="product_cart">
       <Link to={`/product/${product?._id}`}>
         <img
+          width="378"
+          height="378"
           className="medium"
           src={prevLink + product.image}
           alt={product.name}

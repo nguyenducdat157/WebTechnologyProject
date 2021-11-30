@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import "./slide.css";
+import slide1 from "../../assets/slide1.png";
+import slide2 from "../../assets/slide2.png";
+import slide3 from "../../assets/slide3.png";
 const Slide = () => {
   const [countSilde, setCountSlide] = useState(1);
   const [activeSilde, setActiveSlide] = useState(true);
@@ -16,27 +19,18 @@ const Slide = () => {
       <div className="slideshow-container">
         {countSilde === 1 && (
           <div className="mySlides">
-            <img
-              src="https://www.kitbag.com/content/ws/315752/Kitbag_Desktop_TLP_1370x450_ManUtdEN.png"
-              style={{ width: "100%" }}
-            />
+            <img src={slide1} style={{ width: "100%" }} />
           </div>
         )}
         {countSilde === 2 && (
           <div className="mySlides">
-            <img
-              src="https://www.kitbag.com/content/ws/315752/Kitbag_Desktop_TLP_1370x450_ChelseaEN.png"
-              style={{ width: "100%" }}
-            />
+            <img src={slide2} style={{ width: "100%" }} />
           </div>
         )}
 
         {countSilde === 3 && (
           <div className="mySlides">
-            <img
-              src="https://www.kitbag.com/content/ws/315752/Kitbag_Desktop_TLP_1370x450_RealMadridEN.png"
-              style={{ width: "100%" }}
-            />
+            <img src={slide3} style={{ width: "100%" }} />
           </div>
         )}
 

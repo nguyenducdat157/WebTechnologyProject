@@ -10,6 +10,8 @@ const Footer = () => {
           height: "50px",
           color: "white",
           fontSize: "2rem",
+          position: "absolute",
+          width: "100%",
         }}
       >
         JOCKEY SHOP | SĐT: 0123456789

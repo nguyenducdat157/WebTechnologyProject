@@ -1,10 +1,18 @@
 import { useState } from "react";
 import "./Header.css";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 const Header = (props) => {
+  const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
+  const [searchKey, setSearchKey] = useState("");
   const handleShowMenu = () => {
     setShowMenu(!showMenu);
+  };
+
+  const handleSubmitSearch = (e) => {
+    e.preventDefault();
+    if (searchKey !== "") history.push(`/search/${searchKey}`);
   };
 
   const userReducer = useSelector((state) => state.userReducer);
@@ -39,12 +47,15 @@ const Header = (props) => {
           <i className="fa fa-bars"></i>
         </a>
         <div className="header__search">
-          <form
-            onSubmit={() => {
-              alert("submit");
-            }}
-          >
-            <input type="text" placeholder="Search.." name="search" />
+          <form onSubmit={handleSubmitSearch}>
+            <input
+              type="text"
+              placeholder="Search.."
+              name="search"
+              onChange={(e) => {
+                setSearchKey(e.target.value);
+              }}
+            />
             <button type="submit">
               <i className="fa fa-search"></i>
             </button>

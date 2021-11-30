@@ -12,7 +12,7 @@ export const signin = (email, password) => async (dispatch) => {
         },
       });
       dispatch({ type: USER_SIGNIN_SUCCESS, payload: data.user });
-      Cookie.set('userInfo', JSON.stringify(data));
+      // Cookie.set('userInfo', JSON.stringify(data));
       localStorage.setItem('info', JSON.stringify(data.user))
       localStorage.setItem('token', JSON.stringify(data.token))
     } catch (error) {

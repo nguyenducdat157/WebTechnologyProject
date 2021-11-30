@@ -38,7 +38,7 @@
   user-select: none;
 }
 html {
-  font-size: 13px;
+  font-size: 16px;
 }
 body {
   font-family: "Roboto", sans-serif;
@@ -65,11 +65,11 @@ img {
 .container .mobile {
   padding: 0 10px;
 }
-
+/* 
 .main {
   margin-bottom: 2rem;
   min-height: 100vh;
-}
+} */
 
 .main .tablet {
   margin-top: calc(var(--header-tablet-height) + 20px);
@@ -181,6 +181,18 @@ img {
   }
 }
 
+.col-1 {
+  flex: 1 1 25rem;
+}
+
+.col-2 {
+  flex: 2 1 50rem;
+}
+
+.col-3 {
+  flex: 32 1 75rem;
+}
+
 button.open-sidebar {
   font-size: 3rem;
   padding: 0.2rem 0.5rem;
@@ -211,4 +223,50 @@ button.open-sidebar:hover {
   grid-template-columns: 1fr;
   grid-template-rows: 5rem 1fr 5rem;
   height: 100%;
+}
+
+/* select */
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: DeepSkyBlue;
+  background-image: none;
+}
+.select {
+  position: relative;
+  height: 3em;
+  line-height: 3;
+  overflow: hidden;
+  border-radius: 0.25em;
+}
+select {
+  flex: 1;
+  padding: 0 0.5em;
+  color: #fff;
+  cursor: pointer;
+}
+/* thiết kế dấu mũi tên */
+.select::after {
+  content: "25BC";
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: rgb(24, 129, 233);
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: 0.25s all ease;
+  -o-transition: 0.25s all ease;
+  transition: 0.25s all ease;
+  color: white;
+}
+/* Hiệu ứng hover */
+.select:hover::after {
+  color: Gainsboro;
 }
