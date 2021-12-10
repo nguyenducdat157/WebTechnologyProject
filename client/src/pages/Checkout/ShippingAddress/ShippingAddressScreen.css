@@ -1,0 +1,34 @@
+.Shippingaddress-form {
+    max-width: 60rem;
+    margin: 0 auto;
+  }
+  .Shippingaddress-form > div {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+  }
+  .Shippingaddress-form label {
+    margin: 1rem 0;
+  }
+  .Shippingaddress-form input:active{
+      border-style: solid;
+      border-width: 1px;
+      border-color: #047baa;
+  }
+  button {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 0.1rem #a4a4a4 solid;
+    font-size: 1.6rem;
+    font-family: Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  button {
+    background-color: #f8fef8;
+    cursor: pointer;
+  }
+  button.Shippingaddress-primary {
+    background-color: #f0c040;
+  }

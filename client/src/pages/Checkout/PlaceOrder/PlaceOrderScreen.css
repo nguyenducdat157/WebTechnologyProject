@@ -1,0 +1,55 @@
+.PlaceOrder-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .row.center {
+    justify-content: center;
+  }
+  
+  .PlaceOrder-row.PlaceOrder-top {
+    align-items: flex-start;
+  }
+
+  .PlaceOrder-col-2 {
+    flex: 2 1 50rem;
+  }
+  .PlaceOrder-min-30 {
+    min-width: 30rem;
+  }
+
+/* button */
+input:hover,
+select:hover,
+textarea:hover,
+button:hover {
+  border: 0.1rem #404040 solid;
+}
+
+button.PlaceOrder-primary {
+  background-color: #f0c040;
+}
+button.PlaceOrder-block {
+  width: 100%;
+}
+button.PlaceOrder-small {
+  font-size: 1.2rem;
+}
+
+/* cart */
+.PlaceOrder-card {
+  border: 0.1rem #c0c0c0 solid;
+  background-color: #f8f8f8;
+  border-radius: 0.5rem;
+  margin: 1rem;
+}
+.PlaceOrder-card-body {
+  padding: 1rem;
+}
+.PlaceOrder-card-body > * {
+  margin-bottom: 0.5rem;
+}
+.PlaceOrder-price {
+  font-size: 2rem;
+}
