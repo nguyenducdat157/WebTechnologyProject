@@ -122,3 +122,20 @@
     text-align: left;
   }
 }
+
+.header_admin {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #047baa;
+  color: white;
+  align-items: center;
+}
+
+.header_admin_title:hover {
+  color: white;
+}
+.header_signout {
+  cursor: pointer;
+  font-size: 1.2rem;
+}

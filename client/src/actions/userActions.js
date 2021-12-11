@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Cookie from 'js-cookie';
-import { USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS } from '../constants/userConstants';
+import { USER_DELETE_FAIL, USER_DELETE_REQUEST, USER_DELETE_SUCCESS, USER_LIST_FAIL, USER_LIST_REQUEST, USER_LIST_SUCCESS, USER_LOGOUT, USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS } from '../constants/userConstants';
 import { HOST_URL } from '../ultils/constants';
 
 export const signin = (email, password) => async (dispatch) => {
@@ -53,4 +53,38 @@ export const register = ({name, email, password}) => async (dispatch) => {
 
   }
 
+
+ export const listUser = () => async (dispatch) => {
+    try {
+      dispatch({ type: USER_LIST_REQUEST });
+      const { data } = await axios.get(`${HOST_URL}/api/users/`, {
+        headers:
+          { Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token')) }
+      });
+      dispatch({ type: USER_LIST_SUCCESS, payload: data })
+    } catch (error) {
+      dispatch({ type: USER_LIST_FAIL, payload: error.message });
+    }
+  }
+
+
+export const deleteUser = (userId) => async (dispatch) => {
+  dispatch({ type: USER_DELETE_REQUEST, payload: userId });
+  try {
+    const { data } = await axios.delete(`${HOST_URL}/api/users/admin/${userId}`, {
+      headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}` },
+    });
+    dispatch({ type: USER_DELETE_SUCCESS, payload: data });
+  } catch (error) {
+    console.log(error)
+    dispatch({ type: USER_DELETE_FAIL, payload: error.message });
+  }
+};
+
+
+  export const logout = () => (dispatch) => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("info");
+    dispatch({ type: USER_LOGOUT })
+  }
 //   export {signin, register}

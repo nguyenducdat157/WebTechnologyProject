@@ -2,6 +2,7 @@ const User = require('../models/User');
 const CryptoJS = require("crypto-js");
 const router = require('../routes/auth');
 const { getToken } = require('../middleware/auth');
+const Order = require('../models/Order');
 //UPDATE
 exports.updateUserById = async (req, res) => {
     const checkUser = await User.findOne({email : req.body.email});
@@ -67,8 +68,19 @@ exports.getUserById = async (req, res) => {
 //GET ALL USER
 exports.getAllUser = async (req, res) => {
     try {
+      const userAndOrders = [];
       const users = await User.find({});
-      res.send(users);
+      for(let i = 0; i < users.length; i++) {
+        const orders = await Order.find({ userId: users[i]._id });
+        userAndOrders.push({
+          _id: users[i]._id,
+          name: users[i].name,
+          email: users[i].email,
+          isAdmin: users[i].isAdmin,
+          numberOrder: orders.length
+        })
+      }
+      res.send(userAndOrders);
     } catch (err) {
       res.status(500).json(err);
     }

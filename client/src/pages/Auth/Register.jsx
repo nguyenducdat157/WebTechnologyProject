@@ -43,7 +43,7 @@ const Register = () => {
         history.push("/");
       })
       .catch(function (error) {
-        // console.log(error.response);
+        console.log(error);
         dispatch({ type: USER_REGISTER_FAIL, payload: error.message });
         if (error.response?.status === 400) {
           setError("Tài khoản đã tồn tại");

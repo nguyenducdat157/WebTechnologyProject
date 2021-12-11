@@ -47,3 +47,17 @@ export const saveProductReview = (productId, review) => async (dispatch) => {
     dispatch({ type: PRODUCT_REVIEW_SAVE_FAIL, payload: error.message });
   }
 };
+
+export const deleteProduct = (productId) => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_DELETE_REQUEST, payload: productId });
+    const { data } = await axios.delete(`${HOST_URL}/api/products/${productId}`, {
+      headers: {
+        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token')),
+      },
+    });
+    dispatch({ type: PRODUCT_DELETE_SUCCESS, payload: data, success: true });
+  } catch (error) {
+    dispatch({ type: PRODUCT_DELETE_FAIL, payload: error.message });
+  }
+};

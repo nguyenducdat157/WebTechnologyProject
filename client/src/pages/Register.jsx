@@ -40,7 +40,8 @@ export const Register = () => {
 
   useEffect(() => {
     if (userInfo) {
-      history.push("/");
+      if(userInfo.isAdmin) history.push("/admin");
+      else history.push('/')
     }
     if (error) {
       // toast.error("Tài khoản đã tồn tại", {
