@@ -1,0 +1,36 @@
+.form {
+    max-width: 60rem;
+    margin: 0 auto;
+}
+
+.form>div {
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.form label {
+    cursor: default;
+    margin: 1rem 0;
+    width: 100%;
+}
+
+input,
+select,
+textarea,
+button {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 0.1rem #a4a4a4 solid;
+    font-size: 1.6rem;
+    font-family: Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+button.primary {
+    background-color: #f0c040;
+}
+
+input {
+    width: 100%;
+}
