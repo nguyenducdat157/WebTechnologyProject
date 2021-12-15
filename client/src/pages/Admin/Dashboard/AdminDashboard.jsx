@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { listOrders } from "../../../actions/orderActions";
 import { listProducts } from "../../../actions/productActions";
 import { listUser } from "../../../actions/userActions";
 import Header from "../../../components/Header/Header";
@@ -18,9 +19,13 @@ export default function Admindashboard() {
     return !user.isAdmin;
   });
 
+  const orderList = useSelector((state) => state.orderList);
+  const { orders } = orderList;
+
   useEffect(() => {
     dispatch(listProducts());
     dispatch(listUser());
+    dispatch(listOrders());
   }, [dispatch]);
   return (
     <div>
@@ -53,7 +58,7 @@ export default function Admindashboard() {
                 <i className="fa fa-shopping-cart" /> Orders
               </span>
             </div>
-            <div className="dashboard-summary-body">30</div>
+            <div className="dashboard-summary-body">{orders?.length}</div>
           </Link>
         </li>
 

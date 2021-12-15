@@ -1,4 +1,4 @@
-input,
+/* input,
 select,
 textarea,
 button {
@@ -9,7 +9,7 @@ button {
   font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+} */
 
 button {
   background-color: #f8fef8;
@@ -25,17 +25,31 @@ button:hover {
 
 button.PaymentMethod-primary {
   background-color: #f0c040;
+  padding: 0.5rem;
+  border-radius: 5px;
 }
 /* form */
 .PaymentMethod-form {
-    max-width: 60rem;
-    margin: 0 auto;
+  max-width: 60rem;
+  margin: 0 auto;
 }
 .PaymentMethod-form > div {
-    display: flex;
-    flex-direction: column;
-    margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
 }
 .PaymentMethod-form label {
-    margin: 1rem 0;
+  margin: 1rem 0;
 }
+
+@media screen and (max-width: 815px) {
+  /* .PaymentMethod-form {
+    height: 69vh;
+  } */
+}
+
+/* @media screen and (max-width: 488px) {
+  .PaymentMethod-form {
+    height: 64vh;
+  }
+} */

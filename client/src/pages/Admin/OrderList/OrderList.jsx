@@ -1,24 +1,52 @@
 import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { listMyOrders, listOrders } from "../../../actions/orderActions";
 import Header from "../../../components/Header/Header";
 import LoadingBox from "../../../components/LoadingBox/LoadingBox";
 import MessageBox from "../../../components/MessageBox/MessageBox";
+import { formatDate } from "../../../ultils/functions";
 import "./OrderList.css";
-export default function Orderlist() {
-  const loading = 0,
-    error = 0;
+export default function Orderlist(props) {
+  const userReducer = useSelector((state) => state.userReducer);
+  const { userInfo } = userReducer;
+  const orderList = useSelector((state) => state.orderList);
+  const orderMineList = useSelector((state) => state.myOrderList);
+  const { loading, error, orders } = userInfo?.isAdmin
+    ? orderList
+    : orderMineList;
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (userInfo?.isAdmin) {
+      dispatch(listOrders());
+    } else {
+      console.log("USER");
+      dispatch(listMyOrders());
+    }
+  }, []);
+
+  console.log(orders);
+
   return (
     <div>
       <Header />
       <h1>Orders</h1>
-      <Link to="/admin">
-        <h3>Back to dashboard</h3>
-      </Link>
+      {userInfo?.isAdmin ? (
+        <Link to="/admin">
+          <h3>Back to dashboard</h3>
+        </Link>
+      ) : (
+        <Link to="/">
+          <h3>Back to Homepage</h3>
+        </Link>
+      )}
+
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
-      ) : (
+      ) : orders?.length ? (
         <>
           <table className="OrderList-table">
             <thead>
@@ -27,235 +55,65 @@ export default function Orderlist() {
                 <th>USER</th>
                 <th>DATE</th>
                 <th>TOTAL</th>
-                <th>PAID</th>
-                <th>DELIVERED</th>
-                <th>ACTIONS</th>
+                <th>ADDRESS</th>
+                <th>PHONE</th>
+                <th>STATUS</th>
+                {userInfo?.isAdmin && <th>ACTIONS</th>}
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>619bcc65e2589f22ac4c5375</td>
-                <td>Nguyen Duc Dat</td>
-                <td>22/11/2021</td>
-                <td>500.000 VNĐ</td>
-                <td>Bank</td>
-                <td>No</td>
-                <td>
-                  <button
-                    type="button"
-                    className="OrderList-button OrderList-small"
-                  >
-                    Details
-                  </button>
-                  <button
-                    type="button"
-                    className="OrderList-button OrderList-small"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>619bcc65e2589f22ac4c5375</td>
-                <td>Nguyen Duc Dat</td>
-                <td>22/11/2021</td>
-                <td>500.000 VNĐ</td>
-                <td>Bank</td>
-                <td>No</td>
-                <td>
-                  <button
-                    type="button"
-                    className="OrderList-button OrderList-small"
-                  >
-                    Details
-                  </button>
-                  <button
-                    type="button"
-                    className="OrderList-button OrderList-small"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>619bcc65e2589f22ac4c5375</td>
-                <td>Nguyen Duc Dat</td>
-                <td>22/11/2021</td>
-                <td>500.000 VNĐ</td>
-                <td>Bank</td>
-                <td>No</td>
-                <td>
-                  <button
-                    type="button"
-                    className="OrderList-button OrderList-small"
-                  >
-                    Details
-                  </button>
-                  <button
-                    type="button"
-                    className="OrderList-button OrderList-small"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>619bcc65e2589f22ac4c5375</td>
-                <td>Nguyen Duc Dat</td>
-                <td>22/11/2021</td>
-                <td>500.000 VNĐ</td>
-                <td>Bank</td>
-                <td>No</td>
-                <td>
-                  <button
-                    type="button"
-                    className="OrderList-button OrderList-small"
-                  >
-                    Details
-                  </button>
-                  <button
-                    type="button"
-                    className="OrderList-button OrderList-small"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>619bcc65e2589f22ac4c5375</td>
-                <td>Nguyen Duc Dat</td>
-                <td>22/11/2021</td>
-                <td>500.000 VNĐ</td>
-                <td>Bank</td>
-                <td>No</td>
-                <td>
-                  <button
-                    type="button"
-                    className="OrderList-button OrderList-small"
-                  >
-                    Details
-                  </button>
-                  <button
-                    type="button"
-                    className="OrderList-button OrderList-small"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>619bcc65e2589f22ac4c5375</td>
-                <td>Nguyen Duc Dat</td>
-                <td>22/11/2021</td>
-                <td>500.000 VNĐ</td>
-                <td>Bank</td>
-                <td>No</td>
-                <td>
-                  <button
-                    type="button"
-                    className="OrderList-button OrderList-small"
-                  >
-                    Details
-                  </button>
-                  <button
-                    type="button"
-                    className="OrderList-button OrderList-small"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>619bcc65e2589f22ac4c5375</td>
-                <td>Nguyen Duc Dat</td>
-                <td>22/11/2021</td>
-                <td>500.000 VNĐ</td>
-                <td>Bank</td>
-                <td>No</td>
-                <td>
-                  <button
-                    type="button"
-                    className="OrderList-button OrderList-small"
-                  >
-                    Details
-                  </button>
-                  <button
-                    type="button"
-                    className="OrderList-button OrderList-small"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>619bcc65e2589f22ac4c5375</td>
-                <td>Nguyen Duc Dat</td>
-                <td>22/11/2021</td>
-                <td>500.000 VNĐ</td>
-                <td>Bank</td>
-                <td>No</td>
-                <td>
-                  <button
-                    type="button"
-                    className="OrderList-button OrderList-small"
-                  >
-                    Details
-                  </button>
-                  <button
-                    type="button"
-                    className="OrderList-button OrderList-small"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>619bcc65e2589f22ac4c5375</td>
-                <td>Nguyen Duc Dat</td>
-                <td>22/11/2021</td>
-                <td>500.000 VNĐ</td>
-                <td>Bank</td>
-                <td>No</td>
-                <td>
-                  <button
-                    type="button"
-                    className="OrderList-button OrderList-small"
-                  >
-                    Details
-                  </button>
-                  <button
-                    type="button"
-                    className="OrderList-button OrderList-small"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>619bcc65e2589f22ac4c5375</td>
-                <td>Nguyen Duc Dat</td>
-                <td>22/11/2021</td>
-                <td>500.000 VNĐ</td>
-                <td>Bank</td>
-                <td>No</td>
-                <td>
-                  <button
-                    type="button"
-                    className="OrderList-button OrderList-small"
-                  >
-                    Details
-                  </button>
-                  <button
-                    type="button"
-                    className="OrderList-button OrderList-small"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
+              {orders?.map((order) => (
+                <tr>
+                  <td>{order._id}</td>
+                  <td>{order.userId.name}</td>
+                  <td>{formatDate(order.createdAt)}</td>
+                  <td>
+                    $ {order.shippingPrice + order.taxPrice + order.itemsPrice}
+                  </td>
+                  <td>{order.shipping.address}</td>
+                  <td>{order.shipping.phone}</td>
+                  <td>
+                    {order.isPaid
+                      ? "Paid"
+                      : order.isDelivered
+                      ? "Delivered"
+                      : "Pending"}
+                  </td>
+                  {userInfo?.isAdmin && (
+                    <td>
+                      {order.isPaid ? (
+                        <button
+                          type="button"
+                          className="OrderList-button OrderList-small"
+                        >
+                          Delete
+                        </button>
+                      ) : order.isDelivered ? (
+                        <button
+                          type="button"
+                          className="OrderList-button OrderList-small"
+                        >
+                          Pay
+                        </button>
+                      ) : (
+                        <button
+                          type="button"
+                          className="OrderList-button OrderList-small"
+                        >
+                          Delivery
+                        </button>
+                      )}
+                    </td>
+                  )}
+                </tr>
+              ))}
             </tbody>
           </table>
         </>
+      ) : (
+        <MessageBox>
+          No Order. {userInfo?.isAdmin ? "" : <Link to="/">Go Shopping</Link>}
+        </MessageBox>
       )}
     </div>
   );

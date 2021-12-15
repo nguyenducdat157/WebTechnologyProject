@@ -1,5 +1,6 @@
 
 const Order = require('../models/Order');
+const Product = require('../models/Product');
 
 exports.createOrder = async (req, res) => {
   const order = new Order({
@@ -12,6 +13,15 @@ exports.createOrder = async (req, res) => {
     shippingPrice: req.body.shippingPrice,
     totalPrice: req.body.totalPrice,
   });
+
+  const listProduct = await req.body.orderItems
+  console.log(listProduct);
+
+  for(let i = 0; i < listProduct.length; i++) {
+    let product =  await Product.findById({_id: listProduct[i].product});
+    product.countInStock = listProduct[i].countInStock - Number(listProduct[i].qty);
+    product.save();
+  } 
 
     try {
       const newOrder = await order.save();
@@ -54,10 +64,19 @@ exports.deleteOrder = async (req, res) => {
 // USER GET ORDERS
 exports.getMyOrders = async (req, res) => {
     try {
-      const orders = await Order.find({ userId: req.user._id });
-      res.status(200).json(orders);
+      const orders = await Order.find()
+      .populate('userId', ['name']);
+      if(orders.length) {
+        res.status(200).json(orders.filter((order) => {
+          return order.userId._id.toString() === req.user._id;
+        }));
+      }
+      else {
+        res.status(201).json([])
+      }
+      
     } catch (err) {
-      res.status(500).json(err);
+      res.status(500).json({ success: false, message: 'Internal server error' })
     }
   };
 
@@ -65,9 +84,12 @@ exports.getMyOrders = async (req, res) => {
 
 exports.getAllOrders = async (req, res) => {
     try {
-      const orders = await Order.find();
+      const orders = await Order.find()
+      .populate('userId', ['name']);
+      // .populate('postBy', ['userName', 'avatar', 'status'])
       res.status(200).json(orders);
     } catch (err) {
+      console.log(err);
       res.status(500).json(err);
     }
 };
@@ -128,16 +150,24 @@ exports.payOrder = async (req, res) => { // payOrder()
     if (order) {
       order.isPaid = true;
       order.paidAt = Date.now();
-      order.payment = {
-        paymentMethod: 'Thanh toán khi nhận hàng',
-        paymentResult: {
-          payerID: req.body.payerID,
-          orderID: req.body.orderID,
-          paymentID: req.body.paymentID
-        }
-      }
       const updatedOrder = await order.save();
       res.send({ message: 'Order Paid.', order: updatedOrder });
+    } else {
+      res.status(404).send({ message: 'Order not found.' })
+    }
+  } catch (error) {
+    console.log(err);
+    res.status(500).json({ success: false, message: 'Internal server error' })
+  }
+};
+  
+exports.acceptOrder = async (req, res) => { // payOrder()
+  try {
+    const order = await Order.findById(req.params.id);
+    if (order) {
+      order.isDelivered = true;
+      const updatedOrder = await order.save();
+      res.send({ message: 'Order Delivered.', order: updatedOrder });
     } else {
       res.status(404).send({ message: 'Order not found.' })
     }

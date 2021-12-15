@@ -9,9 +9,9 @@ const getToken = (user) => {
       isAdmin: user.isAdmin,
     },
     process.env.JWT_SECRET,
-    {
-      expiresIn: '48h',
-    }
+    // {
+    //   expiresIn: '48h',
+    // }
   );
 };
 

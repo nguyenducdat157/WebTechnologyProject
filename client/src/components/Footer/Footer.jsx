@@ -7,7 +7,7 @@ const Footer = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "50px",
+          textAlign: "center",
           color: "white",
           fontSize: "2rem",
           position: "absolute",

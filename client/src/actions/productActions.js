@@ -61,3 +61,28 @@ export const deleteProduct = (productId) => async (dispatch) => {
     dispatch({ type: PRODUCT_DELETE_FAIL, payload: error.message });
   }
 };
+
+export const saveProduct = (product) => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_SAVE_REQUEST, payload: product });
+    if (!product._id) {
+      const { data } = await axios.post(`${HOST_URL}/api/products`, product, {
+        headers: {
+          Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token')),
+        },  
+      });
+      dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data });
+    } else {
+      const { data } = await axios.put(`${HOST_URL}/api/products/${product._id}` , product, {
+          headers: {
+            Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token')),
+          },
+        }
+      );
+      console.log(product.name);
+      dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data });
+    }
+  } catch (error) {
+    dispatch({ type: PRODUCT_SAVE_FAIL, payload: error.message });
+  }
+};

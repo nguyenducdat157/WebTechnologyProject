@@ -1,4 +1,4 @@
-const { createOrder, updateOrder, deleteOrder, getMyOrders, getAllOrders, getMonthlyIncome, payOrder } = require('../controllers/Order');
+const { createOrder, updateOrder, deleteOrder, getMyOrders, getAllOrders, getMonthlyIncome, payOrder, acceptOrder } = require('../controllers/Order');
 const { isAuth, isAdmin } = require('../middleware/auth');
 const Order = require('../models/Order');
 
@@ -12,3 +12,6 @@ router.delete('/:id',  isAuth, isAdmin, deleteOrder)
 router.get("/mine", isAuth, getMyOrders);
 router.get("/", isAuth, isAdmin, getAllOrders);
 router.put(":id/pay", isAuth, payOrder);
+router.put(":id/accept", isAuth, acceptOrder);
+
+module.exports = router

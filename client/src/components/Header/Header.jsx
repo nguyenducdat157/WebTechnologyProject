@@ -46,7 +46,22 @@ const Header = (props) => {
           <a href="/" className="logo_header">
             <img src="https://jockey.vn/static/assets/logo.svg"></img>
           </a>
-          <a href="#news" className="header__link">
+          <div className="header__search search_2">
+            <form onSubmit={handleSubmitSearch}>
+              <input
+                type="text"
+                placeholder="Search.."
+                name="search"
+                onChange={(e) => {
+                  setSearchKey(e.target.value);
+                }}
+              />
+              <button type="submit">
+                <i className="fa fa-search"></i>
+              </button>
+            </form>
+          </div>
+          <a href="/cart" className="header__link">
             <i className="fa fa-shopping-cart" aria-hidden="true"></i> Cart
           </a>
           {userInfo ? (
@@ -59,13 +74,13 @@ const Header = (props) => {
               Sign In
             </a>
           )}
-          <a href="#about" className="header__link">
+          <a href="/list-orders" className="header__link">
             <i class="fa fa-truck" aria-hidden="true"></i> Order
           </a>
           <a className="icon" onClick={handleShowMenu}>
             <i className="fa fa-bars"></i>
           </a>
-          <div className="header__search">
+          <div className="header__search search_1">
             <form onSubmit={handleSubmitSearch}>
               <input
                 type="text"
