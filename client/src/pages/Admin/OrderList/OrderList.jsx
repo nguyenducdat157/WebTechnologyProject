@@ -1,10 +1,22 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { listMyOrders, listOrders } from "../../../actions/orderActions";
+import {
+  deleteOrder,
+  deliverOrder,
+  listMyOrders,
+  listOrders,
+  payOrder,
+} from "../../../actions/orderActions";
+import Footer from "../../../components/Footer/Footer";
 import Header from "../../../components/Header/Header";
 import LoadingBox from "../../../components/LoadingBox/LoadingBox";
 import MessageBox from "../../../components/MessageBox/MessageBox";
+import {
+  ORDER_DELETE_RESET,
+  ORDER_DELIVER_RESET,
+  ORDER_PAY_RESET,
+} from "../../../constants/orderConstants";
 import { formatDate } from "../../../ultils/functions";
 import "./OrderList.css";
 export default function Orderlist(props) {
@@ -16,6 +28,27 @@ export default function Orderlist(props) {
     ? orderList
     : orderMineList;
 
+  const orderDelete = useSelector((state) => state.orderDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = orderDelete;
+
+  const orderPay = useSelector((state) => state.orderPay);
+  const {
+    loading: loadingPay,
+    error: errorPay,
+    success: successPay,
+  } = orderPay;
+
+  const orderDeliver = useSelector((state) => state.orderDeliver);
+  const {
+    loading: loadingDeliver,
+    error: errorDeliver,
+    success: successDeliver,
+  } = orderDeliver;
+
   const dispatch = useDispatch();
   useEffect(() => {
     if (userInfo?.isAdmin) {
@@ -24,7 +57,24 @@ export default function Orderlist(props) {
       console.log("USER");
       dispatch(listMyOrders());
     }
-  }, []);
+    dispatch({ type: ORDER_DELETE_RESET });
+    dispatch({ type: ORDER_PAY_RESET });
+    dispatch({ type: ORDER_DELIVER_RESET });
+  }, [dispatch, successDeliver, successPay, successDelete]);
+
+  const deleteHandler = (orderId) => {
+    if (window.confirm("Are you sure to delete?")) {
+      dispatch(deleteOrder(orderId));
+    }
+  };
+
+  const payHandler = (orderId) => {
+    dispatch(payOrder(orderId));
+  };
+
+  const deliverHandler = (orderId) => {
+    dispatch(deliverOrder(orderId));
+  };
 
   console.log(orders);
 
@@ -85,6 +135,7 @@ export default function Orderlist(props) {
                         <button
                           type="button"
                           className="OrderList-button OrderList-small"
+                          onClick={() => deleteHandler(order._id)}
                         >
                           Delete
                         </button>
@@ -92,6 +143,7 @@ export default function Orderlist(props) {
                         <button
                           type="button"
                           className="OrderList-button OrderList-small"
+                          onClick={() => payHandler(order._id)}
                         >
                           Pay
                         </button>
@@ -99,6 +151,7 @@ export default function Orderlist(props) {
                         <button
                           type="button"
                           className="OrderList-button OrderList-small"
+                          onClick={() => deliverHandler(order._id)}
                         >
                           Delivery
                         </button>
@@ -109,6 +162,7 @@ export default function Orderlist(props) {
               ))}
             </tbody>
           </table>
+          {!userInfo?.isAdmin && <Footer />}
         </>
       ) : (
         <MessageBox>

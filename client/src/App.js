@@ -18,6 +18,7 @@ import CartScreen from './pages/CartScreen/CartScreen';
 import Placeorderscreen from './pages/Checkout/PlaceOrder/PlaceOrderScreen';
 import Shippingaddressscreen from './pages/Checkout/ShippingAddress/ShippingAddressScreen';
 import Paymentmethodscreen from './pages/Checkout/PaymentMethod/PaymentMethodScreen';
+import AccountScreen from './pages/MyAccount/Account';
 
 function App() {
 
@@ -44,6 +45,7 @@ function App() {
      <Route export path='/list-users' component={userInfo?.isAdmin ? Userlist : PageNotFound}/>
      <Route export path='/create-product' component={userInfo?.isAdmin ? Productedit : PageNotFound}/>
      <Route export path='/edit-product/:id' component={userInfo?.isAdmin ? Productedit : PageNotFound}/>
+     <Route export path='/profile' component={AccountScreen}/>
      <Route path="*" component={PageNotFound} />
   
 

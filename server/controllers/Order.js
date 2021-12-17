@@ -161,11 +161,12 @@ exports.payOrder = async (req, res) => { // payOrder()
   }
 };
   
-exports.acceptOrder = async (req, res) => { // payOrder()
+exports.acceptOrder = async (req, res) => { 
   try {
     const order = await Order.findById(req.params.id);
     if (order) {
       order.isDelivered = true;
+      order.deliveredAt = Date.now();
       const updatedOrder = await order.save();
       res.send({ message: 'Order Delivered.', order: updatedOrder });
     } else {

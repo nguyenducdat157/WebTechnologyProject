@@ -11,7 +11,7 @@ router.post("/", isAuth, createOrder);
 router.delete('/:id',  isAuth, isAdmin, deleteOrder)
 router.get("/mine", isAuth, getMyOrders);
 router.get("/", isAuth, isAdmin, getAllOrders);
-router.put(":id/pay", isAuth, payOrder);
-router.put(":id/accept", isAuth, acceptOrder);
+router.put("/pay/:id", isAuth, isAdmin, payOrder);
+router.put("/accept/:id", isAuth, isAdmin, acceptOrder);
 
 module.exports = router

@@ -5,12 +5,13 @@ const {isAuth, isAdmin, verifyTokenAndAuthorization} = require('../middleware/au
 const upload = require('../middleware/upload');
 
 const { route } = require('./auth');
-const { updateUserById, getUserById, deleteUserByAdmin, getAllUser } = require('../controllers/User');
+const { updateUserById, getUserById, deleteUserByAdmin, getAllUser, changePassword } = require('../controllers/User');
 
-router.put('/:id', isAuth, verifyTokenAndAuthorization, updateUserById);
+router.put('/:id', isAuth,  updateUserById);
 router.get('/find/:id', isAuth, isAdmin, getUserById);
 router.delete('/admin/:id', isAuth, isAdmin, deleteUserByAdmin);
 router.get('/', isAuth, isAdmin, getAllUser);
+router.put('/change-password/:id', isAuth, changePassword);
 
 
 module.exports = router
