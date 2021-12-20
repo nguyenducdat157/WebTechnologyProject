@@ -46,9 +46,8 @@ export const listMyOrders = () => async (dispatch) => {
     dispatch({ type: MY_ORDER_LIST_REQUEST });
    
     const { data } = await axios.get(`${HOST_URL}/api/orders/mine`, {
-      headers: { 
-        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token')),
-      }
+      headers:
+          { Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token')) }
     });
     dispatch({ type: MY_ORDER_LIST_SUCCESS, payload: data })
   } catch (error) {

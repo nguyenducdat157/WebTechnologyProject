@@ -39,6 +39,7 @@ const Register = () => {
         console.log(response.data);
         dispatch({ type: USER_REGISTER_SUCCESS, payload: response.data.user });
         localStorage.setItem("info", JSON.stringify(response.data.user));
+        localStorage.setItem("token", JSON.stringify(response.data.token));
         // Cookie.set("token", response.data.token);
         history.push("/");
       })

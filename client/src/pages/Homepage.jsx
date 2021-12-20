@@ -58,7 +58,7 @@ export const Homepage = () => {
             )}
           </div>
           <Link to="/collections">
-            <h2 style={{ textAlign: "center", marginTop: "20px" }}>
+            <h2 style={{ textAlign: "center", margin: "20px 0px 60px" }}>
               Xem tất cả sản phẩm
             </h2>
           </Link>

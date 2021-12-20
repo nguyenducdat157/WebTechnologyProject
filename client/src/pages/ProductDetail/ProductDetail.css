@@ -49,3 +49,9 @@
   padding: 0 1rem;
   /* border-radius: 5px; */
 }
+
+@media screen and (max-width: 816px) {
+  .product_detail_row {
+    margin-top: 60px;
+  }
+}

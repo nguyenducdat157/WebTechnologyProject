@@ -209,72 +209,74 @@ const ProductDetail = (props) => {
                     {product.reviews.length === 0 && (
                       <h2>There is no review</h2>
                     )}
-                    <ul>
-                      {product.reviews.map((review) => (
-                        <li key={review._id}>
-                          <strong>{review.name}</strong>
-                          <Rating rating={review.rating} caption=" "></Rating>
-                          <p>{review.createdAt.substring(0, 10)}</p>
-                          <p>{review.comment}</p>
-                        </li>
-                      ))}
-                      <li>
-                        {userInfo ? (
-                          <form
-                            className="product_detail_form"
-                            onSubmit={submitHandler}
-                          >
-                            <div>
-                              <h2>Write a customer review</h2>
-                            </div>
-                            <div>
-                              <label htmlFor="rating">Rating</label>
-                              <select
-                                id="rating"
-                                value={rating}
-                                onChange={(e) => setRating(e.target.value)}
-                                className="product_detail_select"
-                              >
-                                <option value="">Select...</option>
-                                <option value="1">1- Poor</option>
-                                <option value="2">2- Fair</option>
-                                <option value="3">3- Good</option>
-                                <option value="4">4- Very good</option>
-                                <option value="5">5- Excelent</option>
-                              </select>
-                            </div>
-                            <div>
-                              <label htmlFor="comment">Comment</label>
-                              <textarea
-                                id="comment"
-                                value={comment}
-                                onChange={(e) => setComment(e.target.value)}
-                              ></textarea>
-                            </div>
-                            <div>
-                              <label />
-                              <button
-                                type="submit"
-                                className="product_detail_button"
-                              >
-                                Submit
-                              </button>
-                            </div>
-                            <div>
-                              {/* {loadingReviewCreate && <LoadingBox></LoadingBox>} */}
-                              {/* {errorReviewCreate && (
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                      <ul style={{ width: "100%", padding: "0 1rem" }}>
+                        {product.reviews.map((review) => (
+                          <li key={review._id}>
+                            <strong>{review.name}</strong>
+                            <Rating rating={review.rating} caption=" "></Rating>
+                            <p>{review.createdAt.substring(0, 10)}</p>
+                            <p>{review.comment}</p>
+                          </li>
+                        ))}
+                        <li>
+                          {userInfo ? (
+                            <form
+                              className="product_detail_form"
+                              onSubmit={submitHandler}
+                            >
+                              <div>
+                                <h2>Write a customer review</h2>
+                              </div>
+                              <div>
+                                <label htmlFor="rating">Rating</label>
+                                <select
+                                  id="rating"
+                                  value={rating}
+                                  onChange={(e) => setRating(e.target.value)}
+                                  className="product_detail_select"
+                                >
+                                  <option value="">Select...</option>
+                                  <option value="1">1- Poor</option>
+                                  <option value="2">2- Fair</option>
+                                  <option value="3">3- Good</option>
+                                  <option value="4">4- Very good</option>
+                                  <option value="5">5- Excelent</option>
+                                </select>
+                              </div>
+                              <div>
+                                <label htmlFor="comment">Comment</label>
+                                <textarea
+                                  id="comment"
+                                  value={comment}
+                                  onChange={(e) => setComment(e.target.value)}
+                                ></textarea>
+                              </div>
+                              <div>
+                                <label />
+                                <button
+                                  type="submit"
+                                  className="product_detail_button"
+                                >
+                                  Submit
+                                </button>
+                              </div>
+                              <div>
+                                {/* {loadingReviewCreate && <LoadingBox></LoadingBox>} */}
+                                {/* {errorReviewCreate && (
                         <h2 style={{ color: "red" }}>{errorReviewCreate}</h2>
                       )} */}
-                            </div>
-                          </form>
-                        ) : (
-                          <h2>
-                            Please <Link to="/signin">Sign In</Link> to write a
-                            review
-                          </h2>
-                        )}
-                      </li>
-                    </ul>
+                              </div>
+                            </form>
+                          ) : (
+                            <h2>
+                              Please <Link to="/login">Sign In</Link> to write a
+                              review
+                            </h2>
+                          )}
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               )}

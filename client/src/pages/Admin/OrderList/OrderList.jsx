@@ -95,7 +95,7 @@ export default function Orderlist(props) {
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
-        <MessageBox variant="danger">{error}</MessageBox>
+        <MessageBox variant="danger">{"Something went wrong!"}</MessageBox>
       ) : orders?.length ? (
         <>
           <table className="OrderList-table">

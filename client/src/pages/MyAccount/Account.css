@@ -1,6 +1,6 @@
 .profile_form {
   max-width: 60rem;
-  margin: 0 auto;
+  margin: 0 auto 30px;
 }
 
 .profile_form > div {
@@ -49,4 +49,10 @@ button {
   border-radius: 0.5rem;
   border: 1px #a4a4a4 solid;
   font-size: 1rem;
+}
+
+@media screen and (max-width: 816px) {
+  .profile_form {
+    margin: 0 auto 60px;
+  }
 }

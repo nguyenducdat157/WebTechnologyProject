@@ -1,6 +1,7 @@
 .login_page_container {
-  width: 360px;
-  padding: 8% 0 0;
+  max-width: 360px;
+  width: 100%;
+  padding: 100px 0 0;
   margin: auto;
 }
 .login_page_form {
@@ -102,3 +103,13 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 } */
+
+@media screen and (max-width: 360px) {
+  .login_page_container {
+    padding: 100px 10px;
+  }
+
+  .login_page_form {
+    padding: 45px 20px;
+  }
+}

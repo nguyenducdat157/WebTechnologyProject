@@ -49,7 +49,7 @@ export default function CartScreen(props) {
   }, [changeItem]);
 
   const checkoutHandler = () => {
-    if (userInfo._id) {
+    if (userInfo?._id) {
       props.history.push("/shipping");
       return;
     }
