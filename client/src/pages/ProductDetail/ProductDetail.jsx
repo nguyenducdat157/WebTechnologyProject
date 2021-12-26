@@ -28,9 +28,10 @@ const ProductDetail = (props) => {
   const history = useHistory();
 
   const productReviewSave = useSelector((state) => state.productReviewSave);
-  const { success: productSaveSuccess } = productReviewSave;
+  const { success: productSaveSuccess, error: productReviewError } =
+    productReviewSave;
 
-  console.log(product);
+  console.log(productSaveSuccess);
 
   useEffect(() => {
     if (productSaveSuccess) {
@@ -39,8 +40,11 @@ const ProductDetail = (props) => {
       setComment("");
       dispatch({ type: PRODUCT_REVIEW_SAVE_RESET });
     }
+    if (productReviewError) {
+      window.alert("Lỗi server!");
+    }
     dispatch(detailsProduct(productId));
-  }, [dispatch, productId, productSaveSuccess]);
+  }, [dispatch, productId, productSaveSuccess, productReviewError]);
   const addToCartHandler = () => {
     // props.history.push(`/cart/${productId}?qty=${qty}`);
     history.push({

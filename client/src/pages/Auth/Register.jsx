@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { register } from "../../actions/userActions";
@@ -27,30 +26,33 @@ const Register = () => {
       return;
     }
     const body = { name, email, password };
-    axios({
-      method: "post",
+    fetch(`${HOST_URL}/api/auth/register`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      url: `${HOST_URL}/api/auth/register`,
-      data: body,
+      body: JSON.stringify(body),
     })
-      .then(function (response) {
-        console.log(response.data);
-        dispatch({ type: USER_REGISTER_SUCCESS, payload: response.data.user });
-        localStorage.setItem("info", JSON.stringify(response.data.user));
-        localStorage.setItem("token", JSON.stringify(response.data.token));
-        // Cookie.set("token", response.data.token);
-        history.push("/");
-      })
-      .catch(function (error) {
-        console.log(error);
-        dispatch({ type: USER_REGISTER_FAIL, payload: error.message });
-        if (error.response?.status === 400) {
-          setError("Tài khoản đã tồn tại");
+      .then(async (response) => {
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          dispatch({ type: USER_REGISTER_SUCCESS, payload: data.user });
+          localStorage.setItem("info", JSON.stringify(data.user));
+          localStorage.setItem("token", JSON.stringify(data.token));
+          history.push("/");
         } else {
-          setError("Rất tiếc, đã có lỗi xảy ra!");
+          dispatch({ type: USER_REGISTER_FAIL, payload: error.message });
+          if (response?.status === 400) {
+            setError("Tài khoản đã tồn tại");
+          } else {
+            setError("Rất tiếc, đã có lỗi xảy ra!");
+          }
         }
+      })
+      .catch((error) => {
+        dispatch({ type: USER_REGISTER_FAIL, payload: error.message });
+        setError("Rất tiếc, đã có lỗi xảy ra!");
       });
   };
 

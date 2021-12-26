@@ -5,6 +5,7 @@ const { getToken } = require('../middleware/auth');
 const Order = require('../models/Order');
 //UPDATE
 exports.updateUserById = async (req, res) => {
+  console.log(req.body);
     const user = await User.findById(req.params.id);
     const checkUser = await User.findOne({email : req.body.email});
     if(checkUser && checkUser._id.toString() !== req.params.id) {
