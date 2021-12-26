@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { register } from "../../actions/userActions";
+import { register } from "../../ultils/actions/userActions";
 import {
   USER_REGISTER_FAIL,
   USER_REGISTER_SUCCESS,
-} from "../../constants/userConstants";
+} from "../../ultils/constants/userConstants";
 import { HOST_URL } from "../../ultils/constants";
 import { validateEmail } from "../../ultils/functions";
 import { useHistory } from "react-router-dom";

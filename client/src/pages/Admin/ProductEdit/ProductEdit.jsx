@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { detailsProduct } from "../../../actions/productActions";
+import { detailsProduct } from "../../../ultils/actions/productActions";
 import LoadingBox from "../../../components/LoadingBox/LoadingBox";
 import MessageBox from "../../../components/MessageBox/MessageBox";
 import { Link, useParams, useHistory } from "react-router-dom";

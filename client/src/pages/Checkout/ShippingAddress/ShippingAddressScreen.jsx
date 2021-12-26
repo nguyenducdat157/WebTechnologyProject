@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { saveShipping } from "../../../actions/cartActions";
+import { saveShipping } from "../../../ultils/actions/cartActions";
 import CheckoutSteps from "../../../components/CheckoutSteps/CheckoutSteps";
 import Footer from "../../../components/Footer/Footer";
 import Header from "../../../components/Header/Header";

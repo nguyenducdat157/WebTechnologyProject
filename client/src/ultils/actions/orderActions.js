@@ -4,7 +4,7 @@ import {
 } from "../constants/orderConstants";
 
 import { CART_EMPTY } from "../constants/cartConstants";
-import { HOST_URL } from "../ultils/constants";
+import { HOST_URL } from "../constants";
 
 
 export const createOrder = (order) => async (dispatch) => {

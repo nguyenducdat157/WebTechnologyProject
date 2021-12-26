@@ -8,9 +8,9 @@ import Header from "../../../components/Header/Header";
 import Footer from "../../../components/Footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { prevLink } from "../../../ultils/constants";
-import { createOrder } from "../../../actions/orderActions";
-import { saveProduct } from "../../../actions/productActions";
-import { ORDER_CREATE_RESET } from "../../../constants/orderConstants";
+import { createOrder } from "../../../ultils/actions/orderActions";
+import { saveProduct } from "../../../ultils/actions/productActions";
+import { ORDER_CREATE_RESET } from "../../../ultils/constants/orderConstants";
 
 export default function Placeorderscreen(props) {
   const cart = useSelector((state) => state.cart);

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { listProducts } from "../../actions/productActions";
+import { listProducts } from "../../ultils/actions/productActions";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import Layout from "../../components/Layout/Layout";
