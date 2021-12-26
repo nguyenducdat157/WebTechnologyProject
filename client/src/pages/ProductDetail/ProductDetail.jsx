@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 import {
   detailsProduct,
   saveProductReview,
-} from "../../actions/productActions";
+} from "../../ultils/actions/productActions";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import MessageBox from "../../components/MessageBox/MessageBox";
 import Rating from "../../components/Rating/Rating";
-import { PRODUCT_REVIEW_SAVE_RESET } from "../../constants/productConstants";
+import { PRODUCT_REVIEW_SAVE_RESET } from "../../ultils/constants/productConstants";
 import { listDarkComment } from "../../ultils/constants";
 import "./ProductDetail.css";
 const prevLink = "http://localhost:5000/public/";

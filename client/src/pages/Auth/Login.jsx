@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { signin } from "../../actions/userActions";
+import { signin } from "../../ultils/actions/userActions";
 import { validateEmail } from "../../ultils/functions";
 import "./Login.css";
 const Login = () => {

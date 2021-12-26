@@ -10,9 +10,9 @@ import MessageBox from "../../components/MessageBox/MessageBox";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { HOST_URL } from "../../ultils/constants";
-import { USER_SIGNIN_SUCCESS } from "../../constants/userConstants";
+import { USER_SIGNIN_SUCCESS } from "../../ultils/constants/userConstants";
 import { validateEmail } from "../../ultils/functions";
-import { logout } from "../../actions/userActions";
+import { logout } from "../../ultils/actions/userActions";
 export default function AccountScreen(props) {
   const userId = props.match.params.id;
   const [name, setName] = useState("");

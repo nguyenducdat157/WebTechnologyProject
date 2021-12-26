@@ -3,7 +3,7 @@ import "./Header.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
-import { logout } from "../../actions/userActions";
+import { logout } from "../../ultils/actions/userActions";
 
 const Header = (props) => {
   const history = useHistory();

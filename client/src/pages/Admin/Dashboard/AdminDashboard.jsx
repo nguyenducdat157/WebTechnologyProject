@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { listOrders } from "../../../actions/orderActions";
-import { listProducts } from "../../../actions/productActions";
-import { listUser } from "../../../actions/userActions";
+import { listOrders } from "../../../ultils/actions/orderActions";
+import { listProducts } from "../../../ultils/actions/productActions";
+import { listUser } from "../../../ultils/actions/userActions";
 import Header from "../../../components/Header/Header";
 import LoadingBox from "../../../components/LoadingBox/LoadingBox";
 import MessageBox from "../../../components/MessageBox/MessageBox";

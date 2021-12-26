@@ -1,6 +1,6 @@
 
 import { CART_ADD_ITEM, CART_CHANGE_ITEM, CART_REMOVE_ITEM, CART_SAVE_PAYMENT, CART_SAVE_SHIPPING } from "../constants/cartConstants";
-import { HOST_URL } from "../ultils/constants";
+import { HOST_URL } from "../constants";
 
 export const addToCart = (productId, qty) => async (dispatch, getState) => {
     // try {

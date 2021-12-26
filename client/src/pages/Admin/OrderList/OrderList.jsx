@@ -7,7 +7,7 @@ import {
   listMyOrders,
   listOrders,
   payOrder,
-} from "../../../actions/orderActions";
+} from "../../../ultils/actions/orderActions";
 import Footer from "../../../components/Footer/Footer";
 import Header from "../../../components/Header/Header";
 import LoadingBox from "../../../components/LoadingBox/LoadingBox";
@@ -16,7 +16,7 @@ import {
   ORDER_DELETE_RESET,
   ORDER_DELIVER_RESET,
   ORDER_PAY_RESET,
-} from "../../../constants/orderConstants";
+} from "../../../ultils/constants/orderConstants";
 import { formatDate } from "../../../ultils/functions";
 import "./OrderList.css";
 export default function Orderlist(props) {

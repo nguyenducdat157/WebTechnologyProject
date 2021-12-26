@@ -4,7 +4,7 @@ import Layout from "../components/Layout/Layout";
 import Product from "../components/Product/Product";
 import Slide from "../components/Silde/Slide";
 import { useDispatch, useSelector } from "react-redux";
-import { listProducts } from "../actions/productActions";
+import { listProducts } from "../ultils/actions/productActions";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteUser, listUser } from "../../../actions/userActions";
+import { deleteUser, listUser } from "../../../ultils/actions/userActions";
 import Header from "../../../components/Header/Header";
 import LoadingBox from "../../../components/LoadingBox/LoadingBox";
 import MessageBox from "../../../components/MessageBox/MessageBox";

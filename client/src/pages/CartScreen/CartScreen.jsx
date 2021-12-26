@@ -5,7 +5,7 @@ import {
   addToCart,
   changeCart,
   removeFromCart,
-} from "../../actions/cartActions";
+} from "../../ultils/actions/cartActions";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import MessageBox from "../../components/MessageBox/MessageBox";
