@@ -17,16 +17,15 @@ const getToken = (user) => {
 
 const isAuth = (req, res, next) => {
     const authHeader = req.headers.authorization;
-    console.log(authHeader);
+    // console.log(authHeader);
     if (authHeader) {
       const token = authHeader.split(" ")[1];
-      console.log(token);
       jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
         if (err) {
           console.log(err)
           return res.status(401).json("Invalid Token");
         }
-        console.log(user);
+        // console.log(user);
         req.user = user;
         next();
         return;

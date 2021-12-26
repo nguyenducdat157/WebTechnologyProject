@@ -3,6 +3,7 @@ const Order = require('../models/Order');
 const Product = require('../models/Product');
 
 exports.createOrder = async (req, res) => {
+  console.log("body", req.body);
   const order = new Order({
     userId: req.body.userId,
     orderItems: req.body.orderItems,

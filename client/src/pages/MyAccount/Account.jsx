@@ -9,7 +9,6 @@ import MessageBox from "../../components/MessageBox/MessageBox";
 // import { USER_UPDATE_RESET } from "../constants/userConstants";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import axios from "axios";
 import { HOST_URL } from "../../ultils/constants";
 import { USER_SIGNIN_SUCCESS } from "../../constants/userConstants";
 import { validateEmail } from "../../ultils/functions";
@@ -51,27 +50,31 @@ export default function AccountScreen(props) {
     }
     setEmailError({ err: false, msg: "" });
     const body = { name, email };
-    try {
-      const { data } = await axios.put(
-        `${HOST_URL}/api/users/${userInfo._id}`,
-        body,
-        {
-          headers: {
-            Authorization:
-              "Bearer " + JSON.parse(localStorage.getItem("token")),
-          },
+    fetch(`${HOST_URL}/api/users/${userInfo._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+      },
+      body: JSON.stringify(body),
+    })
+      .then(async (response) => {
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
+          localStorage.setItem("info", JSON.stringify(data));
+        } else {
+          if (response?.status === 400) {
+            setEmailError({ err: true, msg: "Email ready existed!" });
+          } else {
+            alert("Something went wrong!");
+          }
         }
-      );
-      console.log(data);
-      dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
-      localStorage.setItem("info", JSON.stringify(data));
-    } catch (error) {
-      if (error?.response?.status === 400) {
-        setEmailError({ err: true, msg: "Email ready existed!" });
-      } else {
+      })
+      .catch((error) => {
         alert("Something went wrong!");
-      }
-    }
+      });
   };
 
   const hangleChangePass = async () => {
@@ -130,27 +133,30 @@ export default function AccountScreen(props) {
     setConfirmPassError({ err: false, msg: "" });
 
     const body = { current_password: curPas, new_password: newPas };
-    try {
-      const { data } = await axios.put(
-        `${HOST_URL}/api/users/change-password/${userInfo._id}`,
-        body,
-        {
-          headers: {
-            Authorization:
-              "Bearer " + JSON.parse(localStorage.getItem("token")),
-          },
+    fetch(`${HOST_URL}/api/users/change-password/${userInfo._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+      },
+      body: JSON.stringify(body),
+    })
+      .then(async (response) => {
+        if (response.ok) {
+          const data = await response.json();
+          dispatch(logout());
+          props.history.push("/");
+        } else {
+          if (response?.status === 401) {
+            setCurPassError({ err: true, msg: "Current password invalid!" });
+          } else {
+            alert("Something went wrong!");
+          }
         }
-      );
-      console.log(data);
-      dispatch(logout());
-      props.history.push("/");
-    } catch (error) {
-      if (error?.response?.status === 401) {
-        setCurPassError({ err: true, msg: "Current password invalid!" });
-      } else {
+      })
+      .catch((error) => {
         alert("Something went wrong!");
-      }
-    }
+      });
   };
   return (
     <div>

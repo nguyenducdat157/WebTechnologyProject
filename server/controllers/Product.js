@@ -123,6 +123,7 @@ exports.deleteProduct = async (req, res) => {
 exports.reviewProduct = async (req, res) => { //reviewProduct()
     try {
         const product = await Product.findById(req.params.id);
+        console.log(req.body);
     if (product) {
       const review = {
         name: req.body.name,

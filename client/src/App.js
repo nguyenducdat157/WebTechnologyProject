@@ -47,8 +47,6 @@ function App() {
      <Route export path='/edit-product/:id' component={userInfo?.isAdmin ? Productedit : PageNotFound}/>
      <Route export path='/profile' component={AccountScreen}/>
      <Route path="*" component={PageNotFound} />
-  
-
     </Switch>
    </BrowserRouter>
   );

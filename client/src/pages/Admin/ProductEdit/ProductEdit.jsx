@@ -5,7 +5,6 @@ import LoadingBox from "../../../components/LoadingBox/LoadingBox";
 import MessageBox from "../../../components/MessageBox/MessageBox";
 import { Link, useParams, useHistory } from "react-router-dom";
 import "./ProductEdit.css";
-import axios from "axios";
 import { HOST_URL } from "../../../ultils/constants";
 export default function Productedit(props) {
   const defaultData = props.location.state?.product;
@@ -37,23 +36,6 @@ export default function Productedit(props) {
   const uploadFileHandler = (e) => {
     const file = e.target.files[0];
     setImage(file);
-    // const bodyFormData = new FormData();
-    // bodyFormData.append("image", file);
-    // setUploading(true);
-    // axios
-    //   .post("/api/uploads", bodyFormData, {
-    //     headers: {
-    //       "Content-Type": "multipart/form-data",
-    //     },
-    //   })
-    //   .then((response) => {
-    //     setImage(response.data);
-    //     setUploading(false);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     setUploading(false);
-    //   });
   };
 
   const handleChangeCategory = (e) => {
@@ -82,6 +64,10 @@ export default function Productedit(props) {
       setErrorSubmit({ type: "brand", msg: "Brand is required" });
       return;
     }
+    if (description === "") {
+      setErrorSubmit({ type: "description", msg: "Description is required" });
+      return;
+    }
     if (countInStock === "") {
       setErrorSubmit({
         type: "countInStock",
@@ -98,47 +84,44 @@ export default function Productedit(props) {
     formData.append("brand", brand);
     formData.append("countInStock", countInStock);
     formData.append("description", description);
+    console.log(formData);
     if (!productId) {
-      axios({
-        method: "post",
-        url: `${HOST_URL}/api/products/`,
+      fetch(`${HOST_URL}/api/products/`, {
+        method: "POST",
         headers: {
-          "Content-Type": "multipart/form-data",
+          // "Content-Type": "multipart/form-data",
           Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
         },
-        data: formData,
+        body: formData,
       })
-        .then((response) => {
-          console.log(response);
+        .then(async (response) => {
           if (response.status === 201) {
             alert("Create Product successfully!");
           } else {
             alert("Some thing went wrong!");
           }
         })
-        .catch((err) => {
-          console.log(err);
+        .catch((error) => {
+          console.log(error);
         });
     } else {
-      axios({
-        method: "put",
-        url: `${HOST_URL}/api/products/${productId}`,
+      fetch(`${HOST_URL}/api/products/${productId}`, {
+        method: "PUT",
         headers: {
-          "Content-Type": "multipart/form-data",
+          // "Content-Type": "multipart/form-data",
           Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
         },
-        data: formData,
+        body: formData,
       })
-        .then((response) => {
-          console.log(response);
+        .then(async (response) => {
           if (response.status === 200) {
             alert("Update Product successfully!");
           } else {
             alert("Some thing went wrong!");
           }
         })
-        .catch((err) => {
-          console.log(err);
+        .catch((error) => {
+          console.log(error);
         });
     }
   };
@@ -276,6 +259,9 @@ export default function Productedit(props) {
                   setDescription(e.target.value);
                 }}
               ></textarea>
+              {errorSubmit.type === "description" && (
+                <div style={{ color: "red" }}>{errorSubmit.msg}</div>
+              )}
             </div>
             <div>
               <label></label>

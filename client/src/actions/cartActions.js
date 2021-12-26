@@ -1,35 +1,66 @@
-import axios from "axios";
+
 import { CART_ADD_ITEM, CART_CHANGE_ITEM, CART_REMOVE_ITEM, CART_SAVE_PAYMENT, CART_SAVE_SHIPPING } from "../constants/cartConstants";
 import { HOST_URL } from "../ultils/constants";
 
 export const addToCart = (productId, qty) => async (dispatch, getState) => {
-    try {
-      const { data } = await axios.get(`${HOST_URL}/api/products/${productId}`);
-      console.log(data);
-      dispatch({
-        type: CART_ADD_ITEM, payload: {
-          product: data._id,
-          name: data.name,
-          image: data.image,
-          price: data.price,
-          countInStock: data.countInStock,
-          rating: data.rating,
-          brand: data.brand,
-          category: data.category,
-          description: data.description,
-          qty: Number(qty)
-        }
-      });
-    //   const { cart: { cartItems } } = getState();
-    //   console.log(getState());
-      localStorage.setItem(
-        "cartItems",
-        JSON.stringify(getState().cart.cartItems)
-      );
+    // try {
+    //   const { data } = await axios.get(`${HOST_URL}/api/products/${productId}`);
+     
+    //   console.log(data);
+    //   dispatch({
+    //     type: CART_ADD_ITEM, payload: {
+    //       product: data._id,
+    //       name: data.name,
+    //       image: data.image,
+    //       price: data.price,
+    //       countInStock: data.countInStock,
+    //       rating: data.rating,
+    //       brand: data.brand,
+    //       category: data.category,
+    //       description: data.description,
+    //       qty: Number(qty)
+    //     }
+    //   });
+    // //   const { cart: { cartItems } } = getState();
+    // //   console.log(getState());
+    //   localStorage.setItem(
+    //     "cartItems",
+    //     JSON.stringify(getState().cart.cartItems)
+    //   );
   
-    } catch (error) {
-        console.log(error);
-    }
+    // } catch (error) {
+    //     console.log(error);
+    // }
+
+    fetch(`${HOST_URL}/api/products/${productId}`)
+      .then(res => res.json())
+      .then(
+        (data) => {
+          console.log(data);
+          dispatch({
+                type: CART_ADD_ITEM, payload: {
+                  product: data._id,
+                  name: data.name,
+                  image: data.image,
+                  price: data.price,
+                  countInStock: data.countInStock,
+                  rating: data.rating,
+                  brand: data.brand,
+                  category: data.category,
+                  description: data.description,
+                  qty: Number(qty)
+                }
+              });
+          const { cart: { cartItems } } = getState();
+          localStorage.setItem(
+                "cartItems",
+                JSON.stringify(getState().cart.cartItems)
+              );
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
 }
 
 export const removeFromCart = (productId) => (dispatch, getState) => {
