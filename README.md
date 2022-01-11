@@ -22,9 +22,9 @@ Vào trang chủ https://docs.mongodb.com/manual/installation/ và cài đặt m
 - Mở MongoDB Compass và import các file trong folder Database
 
 6. Tài khoản Admin
-name: admin
-email: nguyenducdat@gmail.com
-password: 123456
+name: admin,
+email: nguyenducdat@gmail.com,
+password: 123456,
 isAdmin : true
 
 * Phân công công việc
