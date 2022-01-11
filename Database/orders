@@ -1,0 +1,521 @@
+[{
+  "_id": {
+    "$oid": "61b75799ef69212fbcc9c378"
+  },
+  "userId": "61a900f77ca48f4d75273bb1",
+  "orderItems": [
+    {
+      "product": {
+        "$oid": "6193e561cb5fa9f7edb8d31f"
+      },
+      "_id": {
+        "$oid": "61b75799ef69212fbcc9c379"
+      }
+    }
+  ],
+  "shipping": {
+    "address": "Nhân Hiền, Hiền Giang, Thường Tín, Hà Nội",
+    "phone": "0379313749",
+    "_id": {
+      "$oid": "61b75799ef69212fbcc9c37a"
+    }
+  },
+  "payment": {
+    "paymentMethod": "Thanh toán khi nhận hàng",
+    "_id": {
+      "$oid": "61b75799ef69212fbcc9c37b"
+    }
+  },
+  "itemsPrice": 1800,
+  "taxPrice": 180,
+  "shippingPrice": 0,
+  "totalPrice": 1980,
+  "isPaid": true,
+  "isDelivered": true,
+  "createdAt": {
+    "$date": "2021-12-13T14:24:25.249Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-23T15:39:38.184Z"
+  },
+  "__v": 0,
+  "deliveredAt": {
+    "$date": "2021-12-15T17:53:53.274Z"
+  },
+  "paidAt": {
+    "$date": "2021-12-23T15:39:38.182Z"
+  }
+},{
+  "_id": {
+    "$oid": "61b757c6ef69212fbcc9c383"
+  },
+  "userId": "61a900f77ca48f4d75273bb1",
+  "orderItems": [
+    {
+      "product": {
+        "$oid": "6193e561cb5fa9f7edb8d31f"
+      },
+      "_id": {
+        "$oid": "61b757c6ef69212fbcc9c384"
+      }
+    }
+  ],
+  "shipping": {
+    "address": "Hiền Giang, Thường Tín Hà Nội",
+    "phone": "0379313749",
+    "_id": {
+      "$oid": "61b757c6ef69212fbcc9c385"
+    }
+  },
+  "payment": {
+    "paymentMethod": "Thanh toán khi nhận hàng",
+    "_id": {
+      "$oid": "61b757c6ef69212fbcc9c386"
+    }
+  },
+  "itemsPrice": 2000,
+  "taxPrice": 200,
+  "shippingPrice": 0,
+  "totalPrice": 2200,
+  "isPaid": true,
+  "isDelivered": true,
+  "createdAt": {
+    "$date": "2021-12-13T14:25:10.407Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-26T16:56:25.643Z"
+  },
+  "__v": 0,
+  "deliveredAt": {
+    "$date": "2021-12-15T17:53:54.915Z"
+  },
+  "paidAt": {
+    "$date": "2021-12-26T16:56:25.641Z"
+  }
+},{
+  "_id": {
+    "$oid": "61b75976ef69212fbcc9c3da"
+  },
+  "userId": "61a900f77ca48f4d75273bb1",
+  "orderItems": [
+    {
+      "product": {
+        "$oid": "61b758b9ef69212fbcc9c3ab"
+      },
+      "_id": {
+        "$oid": "61b75976ef69212fbcc9c3db"
+      }
+    },
+    {
+      "product": {
+        "$oid": "61b75838ef69212fbcc9c3a5"
+      },
+      "_id": {
+        "$oid": "61b75976ef69212fbcc9c3dc"
+      }
+    },
+    {
+      "product": {
+        "$oid": "61b75863ef69212fbcc9c3a7"
+      },
+      "_id": {
+        "$oid": "61b75976ef69212fbcc9c3dd"
+      }
+    }
+  ],
+  "shipping": {
+    "address": "Nhân Hiền, Hiền Giang, Thường Tín, Hà Nội",
+    "phone": "0379313749",
+    "_id": {
+      "$oid": "61b75976ef69212fbcc9c3de"
+    }
+  },
+  "payment": {
+    "paymentMethod": "Thanh toán khi nhận hàng",
+    "_id": {
+      "$oid": "61b75976ef69212fbcc9c3df"
+    }
+  },
+  "itemsPrice": 240,
+  "taxPrice": 24,
+  "shippingPrice": 0,
+  "totalPrice": 264,
+  "isPaid": false,
+  "isDelivered": true,
+  "createdAt": {
+    "$date": "2021-12-13T14:32:22.722Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-23T15:37:08.324Z"
+  },
+  "__v": 0,
+  "deliveredAt": {
+    "$date": "2021-12-23T15:37:08.313Z"
+  }
+},{
+  "_id": {
+    "$oid": "61b785cc93ddb0ee22878e79"
+  },
+  "userId": {
+    "$oid": "619bb5a4767cb9cb34902965"
+  },
+  "orderItems": [
+    {
+      "product": {
+        "$oid": "61b75889ef69212fbcc9c3a9"
+      },
+      "_id": {
+        "$oid": "61b785cc93ddb0ee22878e7a"
+      }
+    }
+  ],
+  "shipping": {
+    "address": "Hiền giang, Thường Tin",
+    "phone": "0379313749",
+    "_id": {
+      "$oid": "61b785cc93ddb0ee22878e7b"
+    }
+  },
+  "payment": {
+    "paymentMethod": "Thanh toán khi nhận hàng",
+    "_id": {
+      "$oid": "61b785cc93ddb0ee22878e7c"
+    }
+  },
+  "itemsPrice": 200,
+  "taxPrice": 20,
+  "shippingPrice": 10,
+  "totalPrice": 230,
+  "isPaid": false,
+  "isDelivered": true,
+  "createdAt": {
+    "$date": "2021-12-13T17:41:32.772Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-23T15:37:15.725Z"
+  },
+  "__v": 0,
+  "deliveredAt": {
+    "$date": "2021-12-23T15:37:15.724Z"
+  }
+},{
+  "_id": {
+    "$oid": "61ba22ea8508f4f2d5f6e8ee"
+  },
+  "userId": {
+    "$oid": "619bb5a4767cb9cb34902965"
+  },
+  "orderItems": [
+    {
+      "product": {
+        "$oid": "61b75889ef69212fbcc9c3a9"
+      },
+      "_id": {
+        "$oid": "61ba22ea8508f4f2d5f6e8ef"
+      }
+    },
+    {
+      "product": {
+        "$oid": "61b75863ef69212fbcc9c3a7"
+      },
+      "_id": {
+        "$oid": "61ba22ea8508f4f2d5f6e8f0"
+      }
+    }
+  ],
+  "shipping": {
+    "address": "Trương Định, Hà Nội",
+    "phone": "0379313749",
+    "_id": {
+      "$oid": "61ba22ea8508f4f2d5f6e8f1"
+    }
+  },
+  "payment": {
+    "paymentMethod": "Thanh toán khi nhận hàng",
+    "_id": {
+      "$oid": "61ba22ea8508f4f2d5f6e8f2"
+    }
+  },
+  "itemsPrice": 300,
+  "taxPrice": 30,
+  "shippingPrice": 0,
+  "totalPrice": 330,
+  "isPaid": false,
+  "isDelivered": true,
+  "createdAt": {
+    "$date": "2021-12-15T17:16:26.341Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-26T16:56:28.410Z"
+  },
+  "__v": 0,
+  "deliveredAt": {
+    "$date": "2021-12-26T16:56:28.409Z"
+  }
+},{
+  "_id": {
+    "$oid": "61bcca310df4d410cb2a492e"
+  },
+  "userId": {
+    "$oid": "61a900f77ca48f4d75273bb1"
+  },
+  "orderItems": [
+    {
+      "product": {
+        "$oid": "61b75863ef69212fbcc9c3a7"
+      },
+      "_id": {
+        "$oid": "61bcca310df4d410cb2a492f"
+      }
+    }
+  ],
+  "shipping": {
+    "address": "Tiểu khu Nguyễn Du, Thường Tín",
+    "phone": "0379313749",
+    "_id": {
+      "$oid": "61bcca310df4d410cb2a4930"
+    }
+  },
+  "payment": {
+    "paymentMethod": "Thanh toán khi nhận hàng",
+    "_id": {
+      "$oid": "61bcca310df4d410cb2a4931"
+    }
+  },
+  "itemsPrice": 100,
+  "taxPrice": 10,
+  "shippingPrice": 10,
+  "totalPrice": 120,
+  "isPaid": false,
+  "isDelivered": false,
+  "createdAt": {
+    "$date": "2021-12-17T17:34:41.069Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-17T17:34:41.069Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61bfe023edb603c696600b54"
+  },
+  "userId": {
+    "$oid": "61bfd2cee395ff7a675907f0"
+  },
+  "orderItems": [
+    {
+      "product": {
+        "$oid": "61b758b9ef69212fbcc9c3ab"
+      },
+      "_id": {
+        "$oid": "61bfe023edb603c696600b55"
+      }
+    },
+    {
+      "product": {
+        "$oid": "61b75889ef69212fbcc9c3a9"
+      },
+      "_id": {
+        "$oid": "61bfe023edb603c696600b56"
+      }
+    }
+  ],
+  "shipping": {
+    "address": "Nhân Hiền, Hiền Giang, Thường Tín, Hà Nội",
+    "phone": "0379313749",
+    "_id": {
+      "$oid": "61bfe023edb603c696600b57"
+    }
+  },
+  "payment": {
+    "paymentMethod": "Thanh toán khi nhận hàng",
+    "_id": {
+      "$oid": "61bfe023edb603c696600b58"
+    }
+  },
+  "itemsPrice": 440,
+  "taxPrice": 44,
+  "shippingPrice": 0,
+  "totalPrice": 484,
+  "isPaid": false,
+  "isDelivered": false,
+  "createdAt": {
+    "$date": "2021-12-20T01:45:07.274Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-20T01:45:07.274Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61c892a310943ef67080888d"
+  },
+  "userId": {
+    "$oid": "61c4b709641f7ada9134c2a8"
+  },
+  "orderItems": [
+    {
+      "product": {
+        "$oid": "61b75889ef69212fbcc9c3a9"
+      },
+      "_id": {
+        "$oid": "61c892a310943ef67080888e"
+      }
+    }
+  ],
+  "shipping": {
+    "address": "Hiền Giang, Thường Tín Hà Nội",
+    "phone": "0379313749",
+    "_id": {
+      "$oid": "61c892a310943ef67080888f"
+    }
+  },
+  "payment": {
+    "paymentMethod": "Thanh toán khi nhận hàng",
+    "_id": {
+      "$oid": "61c892a310943ef670808890"
+    }
+  },
+  "itemsPrice": 200,
+  "taxPrice": 20,
+  "shippingPrice": 10,
+  "totalPrice": 230,
+  "isPaid": false,
+  "isDelivered": false,
+  "createdAt": {
+    "$date": "2021-12-26T16:04:51.909Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-26T16:04:51.909Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61c892f6e2c6fc7e27081529"
+  },
+  "userId": {
+    "$oid": "61c4b709641f7ada9134c2a8"
+  },
+  "orderItems": [
+    {
+      "product": {
+        "$oid": "61c886b9bab09a09fe03b399"
+      },
+      "_id": {
+        "$oid": "61c892f6e2c6fc7e2708152a"
+      }
+    }
+  ],
+  "shipping": {
+    "address": "Hiền giang, Thường Tin",
+    "phone": "0379313749",
+    "_id": {
+      "$oid": "61c892f6e2c6fc7e2708152b"
+    }
+  },
+  "payment": {
+    "paymentMethod": "Thanh toán khi nhận hàng",
+    "_id": {
+      "$oid": "61c892f6e2c6fc7e2708152c"
+    }
+  },
+  "itemsPrice": 15,
+  "taxPrice": 1.5,
+  "shippingPrice": 10,
+  "totalPrice": 26.5,
+  "isPaid": false,
+  "isDelivered": false,
+  "createdAt": {
+    "$date": "2021-12-26T16:06:14.539Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-26T16:06:14.539Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61c89337e2c6fc7e27081559"
+  },
+  "userId": {
+    "$oid": "61c4b709641f7ada9134c2a8"
+  },
+  "orderItems": [
+    {
+      "product": {
+        "$oid": "61c4a8a44626518b137c02fc"
+      },
+      "_id": {
+        "$oid": "61c89337e2c6fc7e2708155a"
+      }
+    }
+  ],
+  "shipping": {
+    "address": "Nhân Hiền, Hiền Giang, Thường Tín, Hà Nội",
+    "phone": "0379313749",
+    "_id": {
+      "$oid": "61c89337e2c6fc7e2708155b"
+    }
+  },
+  "payment": {
+    "paymentMethod": "Thanh toán khi nhận hàng",
+    "_id": {
+      "$oid": "61c89337e2c6fc7e2708155c"
+    }
+  },
+  "itemsPrice": 20,
+  "taxPrice": 2,
+  "shippingPrice": 10,
+  "totalPrice": 32,
+  "isPaid": false,
+  "isDelivered": false,
+  "createdAt": {
+    "$date": "2021-12-26T16:07:19.761Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-26T16:07:19.761Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61c89e0a1f19185907499978"
+  },
+  "userId": {
+    "$oid": "61c4b709641f7ada9134c2a8"
+  },
+  "orderItems": [
+    {
+      "product": {
+        "$oid": "61c886b9bab09a09fe03b399"
+      },
+      "_id": {
+        "$oid": "61c89e0a1f19185907499979"
+      }
+    }
+  ],
+  "shipping": {
+    "address": "Tiểu khu Nguyễn Du, Thường Tín",
+    "phone": "0379313749",
+    "_id": {
+      "$oid": "61c89e0a1f1918590749997a"
+    }
+  },
+  "payment": {
+    "paymentMethod": "Thanh toán khi nhận hàng",
+    "_id": {
+      "$oid": "61c89e0a1f1918590749997b"
+    }
+  },
+  "itemsPrice": 5,
+  "taxPrice": 0.5,
+  "shippingPrice": 10,
+  "totalPrice": 15.5,
+  "isPaid": false,
+  "isDelivered": false,
+  "createdAt": {
+    "$date": "2021-12-26T16:53:30.615Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-26T16:53:30.615Z"
+  },
+  "__v": 0
+}]

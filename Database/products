@@ -1,0 +1,214 @@
+[{
+  "_id": {
+    "$oid": "6193e561cb5fa9f7edb8d31f"
+  },
+  "name": "Arsenal Home",
+  "brand": "addidas",
+  "price": 200,
+  "category": "kit",
+  "countInStock": 80,
+  "description": "cool",
+  "reviews": [
+    {
+      "name": "Nguyễn Đức Đạt8",
+      "rating": 3,
+      "comment": "ddẹp",
+      "_id": {
+        "$oid": "61c49e275a4af755ffd9b593"
+      },
+      "createdAt": {
+        "$date": "2021-12-23T16:04:55.718Z"
+      },
+      "updatedAt": {
+        "$date": "2021-12-23T16:04:55.718Z"
+      }
+    },
+    {
+      "name": "Nguyễn Đức Đạt8",
+      "rating": 4,
+      "comment": "kkkkkkkkk",
+      "_id": {
+        "$oid": "61c4a2ceead0e8f979f9f262"
+      },
+      "createdAt": {
+        "$date": "2021-12-23T16:24:46.683Z"
+      },
+      "updatedAt": {
+        "$date": "2021-12-23T16:24:46.683Z"
+      }
+    },
+    {
+      "name": "Nguyễn Đức Đạt8",
+      "rating": 5,
+      "comment": "ooooooooo",
+      "_id": {
+        "$oid": "61c4a7994626518b137c0295"
+      },
+      "createdAt": {
+        "$date": "2021-12-23T16:45:13.519Z"
+      },
+      "updatedAt": {
+        "$date": "2021-12-23T16:45:13.519Z"
+      }
+    },
+    {
+      "name": "Nguyễn Đức Đạt8",
+      "rating": 4,
+      "comment": "ppppppppppppp",
+      "_id": {
+        "$oid": "61c4a7b34626518b137c02a3"
+      },
+      "createdAt": {
+        "$date": "2021-12-23T16:45:39.700Z"
+      },
+      "updatedAt": {
+        "$date": "2021-12-23T16:45:39.700Z"
+      }
+    }
+  ],
+  "image": "uploads/arshome.png",
+  "createdAt": {
+    "$date": "2021-11-16T17:07:45.486Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-23T16:45:39.700Z"
+  },
+  "__v": 4,
+  "numReviews": 4,
+  "rating": 4
+},{
+  "_id": {
+    "$oid": "61b75863ef69212fbcc9c3a7"
+  },
+  "name": "Chelsea Third",
+  "brand": "Addidas",
+  "price": 100,
+  "category": "kit",
+  "countInStock": 97,
+  "description": "cool, ",
+  "rating": 1,
+  "numReviews": 1,
+  "reviews": [
+    {
+      "name": "Nguyễn Đức Đạt8",
+      "rating": 1,
+      "comment": "ggggggggggg",
+      "_id": {
+        "$oid": "61bcc9d80df4d410cb2a4926"
+      },
+      "createdAt": {
+        "$date": "2021-12-17T17:33:12.872Z"
+      },
+      "updatedAt": {
+        "$date": "2021-12-17T17:33:12.872Z"
+      }
+    }
+  ],
+  "image": "uploads/chelaway.png",
+  "createdAt": {
+    "$date": "2021-12-13T14:27:47.110Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-17T17:34:41.070Z"
+  },
+  "__v": 1
+},{
+  "_id": {
+    "$oid": "61b75889ef69212fbcc9c3a9"
+  },
+  "name": "Mancity Home",
+  "brand": "puma",
+  "price": 200,
+  "category": "kit",
+  "countInStock": 15,
+  "description": "cool, ",
+  "rating": 0,
+  "numReviews": 0,
+  "reviews": [],
+  "image": "uploads/macityhomekit.png",
+  "createdAt": {
+    "$date": "2021-12-13T14:28:25.094Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-26T16:04:51.905Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61b758b9ef69212fbcc9c3ab"
+  },
+  "name": "Asenal Bag",
+  "brand": "puma",
+  "price": 20,
+  "category": "accessory",
+  "countInStock": 46,
+  "description": "Big and fashion",
+  "reviews": [],
+  "image": "uploads/arssock2.png",
+  "createdAt": {
+    "$date": "2021-12-13T14:29:13.524Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-20T01:45:07.267Z"
+  },
+  "__v": 0,
+  "numReviews": 0,
+  "rating": 0
+},{
+  "_id": {
+    "$oid": "61c4a8a44626518b137c02fc"
+  },
+  "name": "Arsenal Sock",
+  "brand": "Addidas",
+  "price": 20,
+  "category": "accessory",
+  "countInStock": 39,
+  "description": "warm",
+  "rating": 0,
+  "numReviews": 0,
+  "reviews": [],
+  "image": "uploads/ars1.png",
+  "createdAt": {
+    "$date": "2021-12-23T16:49:40.140Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-26T16:07:19.758Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61c886b9bab09a09fe03b399"
+  },
+  "name": "PSG brusher",
+  "brand": "No branch",
+  "price": 5,
+  "category": "accessory",
+  "countInStock": 46,
+  "description": "đepj",
+  "reviews": [
+    {
+      "name": "Nguyễn Đức Đạt 17",
+      "rating": 3,
+      "comment": "rất đẹp và hữu ích",
+      "_id": {
+        "$oid": "61c89df81f19185907499970"
+      },
+      "createdAt": {
+        "$date": "2021-12-26T16:53:12.791Z"
+      },
+      "updatedAt": {
+        "$date": "2021-12-26T16:53:12.791Z"
+      }
+    }
+  ],
+  "image": "uploads/psg1.png",
+  "createdAt": {
+    "$date": "2021-12-26T15:14:01.905Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-26T16:53:30.616Z"
+  },
+  "__v": 1,
+  "numReviews": 1,
+  "rating": 3
+}]
