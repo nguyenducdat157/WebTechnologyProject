@@ -6,7 +6,7 @@
 - cd WebTechnologyProject
 
 2. Install MongoDB và MongoDB Compass
-Vào trang chủ https://docs.mongodb.com/manual/installation/ và cài đặt mongoDB cho máy local
+- Vào trang chủ https://docs.mongodb.com/manual/installation/ và cài đặt mongoDB cho máy local
 
 3. Run Backend
 - cd server
